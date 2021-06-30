@@ -1,0 +1,38 @@
+
+flex box 
+.parentbox{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 700px;
+    text-align: center;
+}
+p{
+    color: white;
+    font-size: 30px;
+    text-align: center;
+    
+}
+.firstbox{
+    height: 233px;
+    width: 60vw;
+    background-color: red;
+    border: 2px solid black;
+}
+.secondbox{
+    height: 233px;
+    width: 90vw; 
+    background-color: blue;
+    border: 2px solid black;
+    align-self:flex-end;
+ }
+.thirdbox{
+    height: 233px;
+    width: 60vw;
+    background-color: red;
+    border: 2px solid black;
+} 
+
+
+

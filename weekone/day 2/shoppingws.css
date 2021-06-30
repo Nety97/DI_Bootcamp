@@ -1,0 +1,87 @@
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+body{
+    margin: 0;
+
+}
+.navbar{
+    position: fixed;
+    width: 100vw;
+    background-color: white;
+    border-bottom: 3px solid black;
+    height: 100px;
+}
+.shoelogo{
+    width: 80px;
+    height: 70px;
+    position: relative;
+    left: 30px;
+    top: 15px;
+}
+.title1{
+    color: black;
+    font-size: 30px;
+    position: relative;
+    left: 150px;
+    bottom: 70px;
+    /* border: 3px solid white; */
+    width: 7em;
+    
+}
+
+.title2{
+    color: red;
+    font-size: 30px;
+    position: relative;
+    left: 1200px;
+    bottom: 140px;
+    /* border: 3px solid red; */
+    width: 7em;
+
+}
+.title3{
+    color: red;
+    font-size: 30px;
+    position: relative;
+    left: 1000px;
+    bottom: 205px;
+    /* border: 3px solid red; */
+    width: 6em;
+}
+a{
+    text-decoration: none;
+}
+.fotodiv{
+    width: 100vw;
+    height: 93vh;
+    border: 2px solid black;
+    background-image:url('https://media-cldnry.s-nbcnews.com/image/upload/t_fit-1240w,f_auto,q_auto:best/newscms/2021_08/2711606/190110-runner-exercise-sneaker-ac-529p-2711606.jpg');
+    background-repeat: no-repeat;
+    background-size: 100vw;
+}
+.texto{
+    text-align: center;
+    font-size: 3em;
+    position: relative;
+    color: black;
+    margin-top: 20%;
+}
+footer{
+    position: fixed;
+    width: 100vw;
+    bottom: 0px;
+    background-color: white;
+    /* border: 3px solid red; */
+    height: 50px;
+
+}
+footer p{
+    color: black;
+    position: relative;
+    height: 6em;
+    position: relative;
+    left: 1300px;
+}
+

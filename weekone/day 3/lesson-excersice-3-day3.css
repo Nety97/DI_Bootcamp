@@ -1,0 +1,54 @@
+.container{
+    width: 40vw;
+    height: 80vh;
+    border:2px solid black;
+    margin-left:15%;
+    display: grid;
+    grid-template-rows: 1fr 1fr repeat(4, 1fr) ;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px 15px;
+    text-align: center;
+    grid-template-areas: 
+    "header header header"
+    "hero main main"
+    "sidebar main main"
+    "sidebar extra extra"
+    "img img post"
+    "footer footer footer";
+}
+
+.blue{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-area: header;
+    background-color: blue;
+}
+.purple{
+    grid-area: hero;
+    background-color: purple;
+}
+.yellow{
+    grid-area: main;
+    background-color: yellow;
+}
+.green{
+    grid-area: sidebar;
+    background-color: lightgreen;
+}
+.grey{
+    grid-area: extra;
+    background-color: grey;
+}
+.green2{
+    grid-area: img;
+    background-color: green;
+}
+.pink{
+    grid-area: post;
+    background-color: pink;
+}
+.orange{
+    grid-area: footer;
+    background-color: orange;
+}

@@ -1,0 +1,15 @@
+body{
+    margin: 0;
+}
+.login{
+    height: 47vh;
+    text-align: center;
+}
+    
+hr{
+    color: blue;
+    size: 3px;
+}
+.signin{
+    text-align: center;
+}

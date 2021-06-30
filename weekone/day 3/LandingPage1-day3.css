@@ -1,0 +1,75 @@
+body{
+    margin: 0;
+    overflow: hidden;
+    background-image: url(https://images.pexels.com/photos/572897/pexels-photo-572897.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
+    /* width: 100vw;
+    height: 100vh; */
+    background-repeat: no-repeat;
+    background-position: center;
+    font-family: monospace;
+}
+.navbar{
+    /* border-bottom: 2px solid black; */
+    width: 100vw;
+    position: fixed;
+    /* background-color:  rgb(124, 124, 124) ; */
+    top: 0px;
+}
+nav img{
+    width: 80px;
+    height: 80px;
+    background-color: red;
+    border-radius: 0 0 8px 0;
+} 
+ol{
+    display: inline-block;
+    text-decoration: none;
+    list-style-type: none;
+    margin-left: 60em;
+}
+li{
+    display: inline;
+    margin: 30px;
+   
+    color: white;
+    font-size: 2em;
+}
+
+h1, h2{
+    text-align: center;
+    color: white;
+    background-color: none;
+    
+}
+h1{
+    margin-top: 7%;
+    font-size: 5em;
+    margin-bottom: 0;
+}
+h2{
+    font-size: 2em;
+    margin-bottom: 5%;
+    margin-top: 0;
+}
+.box{
+    display: flex;
+    justify-content: center;
+
+}
+.card{
+    height: 200px;
+    width: 200px;
+    /* border: 2px solid white; */
+    display: inline-block;
+    color: white;
+    font-size: 1.3em;
+    margin: 50px;
+}
+
+
+/* Elemento | file:///C:/Users/netan/OneDrive/Escritorio/DI_Bootcamp/week1/LandingPage1-day3.html */
+
+div.card:nth-child(2) > img:nth-child(1) {
+  /* border-radius: 20px; */
+  border-radius: 8px;
+}
