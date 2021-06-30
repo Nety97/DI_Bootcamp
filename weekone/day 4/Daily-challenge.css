@@ -1,0 +1,19 @@
+.col-md-4{
+    /* background-color: tomato; */
+}
+.col-md-8{
+    /* background-color: green; */
+}
+.notification{
+    background-color: rgb(236, 205, 199);
+    color: rgb(167, 67, 49);
+}
+/* .listcolor{
+    background-color: rgb(209, 206, 206);
+} */
+#grayli{
+ background-color: rgb(231, 229, 229);
+}
+#bold{
+    font-weight: 600;
+}
