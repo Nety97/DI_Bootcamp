@@ -5,8 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daily Challenge</title>
+    <style>
+        input{
+            width: 300px;
+            height: 50px;
+            background-color: rgb(190, 186, 186);
+        }
+    </style>
 </head>
 <body>
    <script src="dailyChallenge.js"></script> 
+   <input id="input" type="text" placeholder="Write Some Text" onkeypress="return /[a-z]/i.test(event.key)">
 </body>
 </html>
