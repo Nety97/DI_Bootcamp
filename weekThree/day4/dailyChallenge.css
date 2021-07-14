@@ -1,0 +1,28 @@
+body{
+    background: rgb(105,58,180);
+    background: linear-gradient(90deg, rgba(105,58,180,1) 0%, rgba(253,29,29,1) 61%, rgba(252,176,69,1) 100%);
+}
+.principal{
+    display: flex;
+    justify-content: center;
+    /* margin-top: 16%; */
+}
+.box{
+    font-size: 25px;
+    width: 30%;
+    border-radius: 8px;
+    color: white;
+    
+    /* display: flex;     */
+}
+.lista{
+    list-style-type: none;
+    /* display: inline-block; */
+
+}
+/* #list{
+    display: flex;
+}
+.check{
+    order: 1;
+} */
