@@ -16,6 +16,7 @@ function onlyLetters(e) {
             // inpu.remove(keyCode)
             // inpu.value = inpu.value 
             // console.log(inpu.value)
+            e.preventDefault();
         }
     }
 }
