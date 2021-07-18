@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lessons</title>
+</head>
+<body>
+    <script>
+        function retrieve(x =  capitilize()) {
+            console.log(x)
+        }
+        function capitilize() {
+            let username = "natu"
+            return username
+        }
+        retrieve()
+
+    const compare = (a, b, operator) => {
+    if (operator === "+") {
+        return a+b;
+    } else if (operator === "-") {
+        return a-b;
+    }
+    return [a,b];
+}
+let classmates = ["Josh", "Lily", "Sophie", "Mark"]; 
+classmates.forEach((name, index, x) => x[index] = name + "!")
+console.log(classmates)
+    </script>
+</body>
+</html>
