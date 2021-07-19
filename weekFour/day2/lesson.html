@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson</title>
+</head>
+<body>
+    <script>
+        let username = "John";
+            function checkName (user) {
+                console.log("username = user", username === user) //i throght false beacuse the variable was never declare but it was as parameter in the function but its true because im setting the variable user equal to username
+                user += "Smith"; // user = JohnSmith
+                console.log("username = user", username === user) //false because there are ot the same 
+                console.log("username = ", user, username) // true calling the 2 variables separetly
+            }
+            console.log("before username = ", username) // john
+            checkName(username) 
+            console.log("after username = ", username) // john
+
+
+            // exercise 2
+            let name = "John";
+            function checkName() {
+                console.log("in the checkName func : ", name)
+                let nameUppercase = name.toUpperCase();
+                //lexical scope, the inner function has access to the variables 
+                //of the outer function
+                function addExclamation() {
+                    let test = "hello";
+                    nameUppercase += "!"
+                    console.log("in the addExclamation func NAME_TO_UPPERCASE: ", nameUppercase);
+                };
+                addExclamation();
+                addExclamation(); 
+                addExclamation();  
+            }
+            checkName(); 
+            // declare a global variable name = "John"
+
+            // first call checkname()
+            // console.log("in the checkName func : ", name)
+            // let nameUppercase = name.toUpperCase();
+            // call function addExclamation()
+            // then declare the variable let test = "hello";
+            // then adding "!" to the variable nameUppercase
+            // then console.log("in the addExclamation func NAME_TO_UPPERCASE: ", nameUppercase)
+            // go out from addExclamation() and delete 
+            // call function addExclamation()
+            // then declare the variable let test = "hello";
+            // then adding "!" to the variable nameUppercase
+            // then console.log("in the addExclamation func NAME_TO_UPPERCASE: ", nameUppercase)
+            // go out from addExclamation() and delete
+            // call function addExclamation()
+            // then declare the variable let test = "hello";
+            // then adding "!" to the variable nameUppercase
+            // then console.log("in the addExclamation func NAME_TO_UPPERCASE: ", nameUppercase)
+            // go out from addExclamation() and delete
+            
+            // then start deleting from the last to the first
+
+    </script>
+</body>
+</html>
