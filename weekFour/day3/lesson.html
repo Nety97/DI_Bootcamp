@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body>
+    <script>
+        
+        // const z = (n) => n.split("");
+        // const y = (n) => {
+        //     n.forEach((element, index) => n[index] = element.toUpperCase());
+        //     console.log(n)
+        //     return n
+        // }
+        // const q = (n) => {
+        //     n.forEach((element, index) => n[index] = element.push("."))
+        //     console.log(n)
+        //     // return n 
+        // }
+        
+        
+        // const h = x => q(y(z(x)))
+
+        // console.log(h("nety"))
+
+        const students = [
+	{name: 'Rich', score: 33}, 
+	{name: 'Peter', score: 55}
+];
+
+        const studentsScore = students.map(element => element.score) // get only the score
+        // const studentsScore = students.map(element => ({ first: element.score, second: element.name })) // get an array and inside the object with both values
+        const studentsThree = students.map(element => {
+           let average = element.score > 50 ? true : false;
+           return {name: element.name, score: element.score, average}
+        })
+        console.log(studentsThree)
+
+    </script>
+</body>
+</html>
