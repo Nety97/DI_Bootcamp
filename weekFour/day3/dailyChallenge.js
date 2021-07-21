@@ -33,6 +33,6 @@ console.log(getHonda(carInventory))
 carInventory.sort(function(x,y){
     return x.car_year - y.car_year
 })
-console.log(carInventory)
+
 
 

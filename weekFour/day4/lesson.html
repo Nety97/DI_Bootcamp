@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson</title>
+</head>
+<body>
+    <script>
+        // const student = {
+        //     name: 'John Doe',
+        //     age: 16,
+        //     scores: {
+        //         maths: 74,
+        //         english: 63
+        //     }
+        // };
+
+        // const studentTwo = {...student, scores: {...student.scores}}
+        // console.log(studentTwo)
+        // const studentThree = {...student, scores: {...student.scores, goodstudent : true}}
+        // console.table(studentThree)
+
+        class Rabbit {
+        constructor(type, age) {
+            this.type = type;
+            this.age = age
+        }
+            speak(line) {
+                console.log(`The ${this.type} rabbit says '${line}' and im ${this.age} old`);
+            }
+        }
+let killerRabbit = new Rabbit("killer", 13);
+let blackRabbit = new Rabbit("black", 3);
+killerRabbit.speak("hello how are you");
+blackRabbit.speak("mmm i love carrots")
+console.log(blackRabbit)
+
+
+    </script>
+</body>
+</html>
