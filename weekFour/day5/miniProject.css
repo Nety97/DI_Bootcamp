@@ -1,0 +1,46 @@
+body{
+    background-image: url("https://github.com/devtlv/studentsGitHub/blob/master/JS/Week%204/Day5/Mini%20Projects/Mini%20Project%201%20(Robots)/circuit-pattern.png?raw=true");
+}
+.navBar{
+    background-color: hotpink;
+    /* rgb(98, 148, 189) */
+}
+.letra{
+    font-family: 'Bloody', sans-serif;
+    margin-left: 20px;
+    /* 'Zen Tokyo Zoo', cursive; */
+}
+.btn{
+    background-color: white;
+}
+/* .cardPap{
+    display: flex;
+} */
+.card{
+    background-image: url("https://github.com/devtlv/studentsGitHub/blob/master/JS/Week%204/Day5/Mini%20Projects/Mini%20Project%201%20(Robots)/card-pattern.png?raw=true");
+    width: 230px;
+    height: 310px;
+    display: inline-block;
+    margin: 30px;
+    text-align: center;
+    font-family: 'Bloody', sans-serif;
+                                                                                                                                                                                                
+}
+/* .imgRobot{
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background-color: hotpink;
+    margin-left: 20px;
+    margin-top:20px;
+} */
+.cardImg{
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background-color: hotpink;
+    margin-left: 20px;
+    margin-top:20px;
+    background-position: center;
+    background-size: contain;
+}
