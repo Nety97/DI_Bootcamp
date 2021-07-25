@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise XP</title>
+</head>
+<body>
+    <form action="exerciseXP.html" method="get">
+        <label for="name">Name</label> <br>
+        <input id="userName" name="name" type="text" placeholder="YOUR NAME HERE"><br>
+        <label for="textarea">Give us feedback</label> <br>
+        <textarea name="textarea" id="textA" cols="30" rows="10"></textarea><br>
+        <button type="submit">Submit</button>
+    </form>
+    <!-- The method GET send the data through the url as a querry string, in most cases this is not secure because everyone can see it -->
+    <!-- exercise 2 -->
+    <form action="exerciseXP.html" method="POST">
+        <label for="name">Name</label> <br>
+        <input id="userName" name="name" type="text" placeholder="YOUR NAME HERE"><br>
+        <label for="textarea">Give us feedback</label> <br>
+        <textarea name="textarea" id="textA" cols="30" rows="10"></textarea><br>
+        <button type="submit">Submit</button>
+    </form>
+    <!-- In this case the data will get send it by the html as a form Data, as we can see it in headers section, in its more secure to send data this way   -->
+    <!-- exercise 3 in the js file-->
+
+
+    <script src="exerciseXP.js"></script>
+</body>
+</html>
