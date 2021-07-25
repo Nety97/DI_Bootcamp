@@ -15,6 +15,7 @@ function takeValue(e) {
 // GET
 // ----------------------
 const urlSearchParams = new URLSearchParams(window.location.search);
+console.log(urlSearchParams)
 // console.log(urlSearchParams) //returns A URLSearchParams object instance.
 const params = Object.fromEntries(urlSearchParams.entries());
 console.log(params)
