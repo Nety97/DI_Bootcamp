@@ -19,11 +19,18 @@ function createGif(e) {
         } else if (gif.status === 200) {
             console.log(gif.response)
             frame = document.createElement("iframe")
+            let buttons = document.createElement('button')
             frame.setAttribute('src', gif.response.data[0].embed_url)
             frame.setAttribute('width', '150px')
             frame.setAttribute('height', '150px')
+            buttons.textContent = "Delete"
+            div.appendChild(buttons)
             div.appendChild(frame)
-
+            buttons.addEventListener('click', delet =>{
+                div.removeChild(frame)
+                div.removeChild(buttons)
+            })
+            
         }
         
     }
