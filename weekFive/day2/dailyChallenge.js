@@ -23,8 +23,8 @@ function createGif(e) {
             di = document.createElement("div")
             let buttons = document.createElement('button')
             frame.setAttribute('src', gif.response.data[0].embed_url)
-            frame.setAttribute('width', '150px')
-            frame.setAttribute('height', '150px')
+            frame.setAttribute('width', '250px')
+            frame.setAttribute('height', '250px')
             buttons.textContent = "Delete"
             di.appendChild(frame)
             di.appendChild(buttons)
