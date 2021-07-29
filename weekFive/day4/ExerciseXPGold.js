@@ -100,7 +100,6 @@ const urls = [
 //     console.log('posta', posts1);
 //     console.log('albums', albums1);
 //   }
-getData()
 const getData = async function() {
     const [ users, posts, albums ] = await Promise.all(urls.map(async function (url) {
         let a = await fetch(url)
@@ -114,3 +113,5 @@ const getData = async function() {
     console.log('posta', posts);
     console.log('albums', albums);
 }
+
+getData()

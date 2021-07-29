@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="dailyChallenge.css">
+    <link rel="shortcut icon" href="money.ico" type="image/x-icon"> <!--Iconos diseñados por"https://www.freepik.com"-->
+    <title>Currency Exchange</title>
+</head>
+<body>
+    <div id="box" class="container">
+        <h1>Currency Exchange</h1>
+        <p>From</p>
+        <select id="from">
+            <option value="USDUSD">Dolar USA</option>
+            <option value="USDILS">Shekel Israel</option>
+            <option value="USDMXN">Mexican Peso</option>
+            <option value="USDGBP">British pound</option>
+        </select>
+        
+        <p>To</p>
+        <select id="to">
+            <option value="USDILS">Shekel Israel</option>
+            <option value="USDUSD">Dolar USA</option>
+            <option value="USDMXN">Mexican Peso</option>
+            <option value="USDGBP">British pound</option>
+        </select>
+        <p>Amount</p>
+        <input  id="amount" type="text">
+        <button id="button" type="submit">Convert</button>
+        <p class="money" id="finalM"></p>
+    </div>
+    
+
+    <script src="dailyChallenge.js"></script>
+</body>
+</html>
