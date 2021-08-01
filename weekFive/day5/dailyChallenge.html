@@ -6,30 +6,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="dailyChallenge.css">
     <link rel="shortcut icon" href="money.ico" type="image/x-icon"> <!--Iconos diseñados por"https://www.freepik.com"-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
     <title>Currency Exchange</title>
 </head>
 <body>
     <div id="box" class="container">
         <h1>Currency Exchange</h1>
-        <p>From</p>
-        <select id="from">
-            <option value="USDUSD">Dolar USA</option>
-            <option value="USDILS">Shekel Israel</option>
-            <option value="USDMXN">Mexican Peso</option>
-            <option value="USDGBP">British pound</option>
-        </select>
+        <div class="fromto">
+            <div>
+                <p>From</p>
+                <select id="from">
+                    <option value="USDUSD">Dolar USA</option>
+                    <option value="USDILS">Shekel Israel</option>
+                    <option value="USDMXN">Mexican Peso</option>
+                    <option value="USDGBP">British pound</option>
+                </select>
+            </div>
+            <div>
+                <p>To</p>
+                <select id="to">
+                    <option value="USDILS">Shekel Israel</option>
+                    <option value="USDUSD">Dolar USA</option>
+                    <option value="USDMXN">Mexican Peso</option>
+                    <option value="USDGBP">British pound</option>
+                </select>
+            </div>
+        </div>
         
-        <p>To</p>
-        <select id="to">
-            <option value="USDILS">Shekel Israel</option>
-            <option value="USDUSD">Dolar USA</option>
-            <option value="USDMXN">Mexican Peso</option>
-            <option value="USDGBP">British pound</option>
-        </select>
-        <p>Amount</p>
-        <input  id="amount" type="text">
-        <button id="button" type="submit">Convert</button>
-        <p class="money" id="finalM"></p>
+        
+        <div>
+            <p>Amount</p>
+            <input  id="amount" type="text">
+            <button id="button" type="submit">Convert</button>
+            <p class="money" id="finalM"></p>
+        </div>
+        
     </div>
     
 

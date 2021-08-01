@@ -22,27 +22,10 @@ async function convert() {
         let a = await fetch('http://api.currencylayer.com/live?access_key=5403178254022c7c9808fab4b75ffa6b')
         let b = await a.json()
         console.log(b.quotes)
-        let firstCurrency = b.quotes[fro] 
-        let secondCurrency = b.quotes[t]
+        // let firstCurrency = b.quotes[fro] 
+        // let secondCurrency = b.quotes[t]
         let finalmulti =  1 / b.quotes[fro] * amount.value * b.quotes[t]  
-        money.textContent = finalmulti
-        // if (fro == t) {
-        //     let finalmulti2 = 1 * amount.value
-        //     money.textContent = finalmulti2
-        //     console.log("im if")
-        // } else if(b.quotes[fro] > b.quotes[t]) {
-        //     let finalmulti3 = amount.value / b.quotes[fro]
-        //     money.textContent = finalmulti3
-        //     console.log("elseif")
-        // } else{
-        //     let finalmulti = b.quotes[t] * b.quotes[fro] * amount.value
-        //     money.textContent = finalmulti
-        //     console.log("else")
-        // }
-
-        
-        
-        
+        money.textContent = finalmulti.toFixed(2) 
     } catch (err) {
         console.log('something went wrong with the page' + err)
     }
