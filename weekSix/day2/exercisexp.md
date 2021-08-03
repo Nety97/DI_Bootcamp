@@ -46,14 +46,14 @@
 -- SELECT * FROM purchases where customer_id and items_id
 
 part 2 
--- SELECT * FROM customer 
+--1 SELECT * FROM customer 
 
--- SELECT  first_name || last_name FROM customer AS full_name
+--2 SELECT  first_name || last_name FROM customer AS full_name
 
--- SELECT create_date FROM customer LIMIT 1
+--3 SELECT create_date FROM customer LIMIT 1
 
--- SELECT * FROM customer ORDER BY customer DESC
+--4 SELECT * FROM customer ORDER BY customer DESC
 
--- SELECT * FROM film where film_id = 15 or film_id = 150
+--7 SELECT * FROM film where film_id = 15 or film_id = 150
 
 i cant finished i try to complete tomorrow
