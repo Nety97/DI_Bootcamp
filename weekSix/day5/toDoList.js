@@ -4,16 +4,8 @@ let tasks = JSON.parse(tas)
 let box = document.getElementById('box')
 console.log(tasks)
 
-// tasks.sort(function (a, b) {
-//     return (new Date(a[index][2])).getTime() - (new Date(b[index][2])).getTime();
-// });
-// console.log(tasks)
-// tasks.sort(function(a,b){
-//     // Turn your strings into dates, and then subtract them
-//     // to get a value that is either negative, positive, or zero.
-//     return new Date(b.date) - new Date(a.date);
-// });
-// console.log(tasks)
+
+
 
 tasks.sort(function(a,b) {
     return(new Date(a[2]) - new Date(b[2]))
