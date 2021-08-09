@@ -4,6 +4,7 @@ const getUsers = async () => {
     try{
         const res = await axios.get('https://jsonplaceholder.typicode.com/users')
         const users = await res.data
+        
         return users
     }
     catch(e){
