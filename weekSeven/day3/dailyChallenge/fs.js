@@ -50,7 +50,7 @@ function firstStep(a) {
                 if (sum == -1) {
                     console.log(sum)
                     y = false
-                    final = index   
+                    final = index +1 
                 }
             }
         }
