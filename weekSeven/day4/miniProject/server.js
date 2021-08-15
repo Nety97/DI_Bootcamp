@@ -26,25 +26,31 @@ app.post('/',(req,res) => {
         }
     })
 
-    // res.send(
-    //   {
-    //     message:'Post OK'
-    //   }
-    // )
+    // res.send(req.body);
+    
 })
 
 app.get('/jojo', (req, res)=>{
-    fs.readFile('./items', (err,data)=>{
-        if (err) {
-            console.log('err', err)
-        }
-        else{
-            console.log('data', data)
-            let too = data.toString()
-            res.send(too)
+    let list = []
+    try {
+        const f = fs.readFile('./items')
+        list = JSON.stringify(f)
+        list2 = JSON.parse(list)
+    } catch (error) {
+        console.log(error)
+    }
+    res.send(list)
+    // const f = fs.readFile('./items', (err,data)=>{
+    //     if (err) {
+    //         console.log('err', err)
+    //     }
+    //     else{
+    //         console.log('data', data)
+    //         let too = data.toString()
+    //         res.send(too)
             
-        }
-    })
+    //     }
+    // })
 })
 // DB.createUser(req.body.username, req.body.password)
 //     .then(data => {
