@@ -36,24 +36,27 @@
     transform: rotate(360deg);
   }
 }
-.modal-body {
-  padding: 10px;
-  background: white;
-  border: solid;
-  border-radius: 8px; 
-  width: 40%;
+.card{
+  height: 350px;
+  width: 250px;
+  border-radius: 8px;
+  margin: 30px;
+  border: solid 3px gold;
+  cursor: pointer;
+  -webkit-box-shadow: 5px -3px 14px 2px rgba(255,173,130,0.82); 
+  box-shadow: 5px -3px 14px 2px rgba(240, 170, 133, 0.82);
+  transition: 0.5s;
+
 }
-.body2{
-  width: 100vw;
-  height: 100vh;
+.score{
   display: flex;
   justify-content: center;
-  align-items: center;
-}
-.btn{
-  background-color:white;
-  border-radius: 5px;
-  float: right;
-  font-size: 1.2em;
   
+}
+.header{
+  background: gold;
+  
+}
+.card:hover{
+  background-color: gold;
 }
