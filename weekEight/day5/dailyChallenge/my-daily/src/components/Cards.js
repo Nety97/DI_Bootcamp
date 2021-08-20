@@ -5,6 +5,7 @@ class Cards extends React.Component{
     constructor(){
         super();
         this.state={
+            congratulations: '',
             score: 0,
             topScore: 0,
             superheroes: [
@@ -146,6 +147,9 @@ class Cards extends React.Component{
 
     render(){
         let arr = this.state.superheroes;
+        if (this.state.score === 12) {
+            this.setState({congratulations: 'Congrats you finish the Game!!'})
+        }
         // console.log(arr)
         return(
             <div>
@@ -155,12 +159,14 @@ class Cards extends React.Component{
                 
                     <div className='score'>
                         <p style={{marginRight: '20px'}}>Score: {this.state.score}</p>
-                        <p>Top Score: {this.state.topScore}</p>
+                        <p style={{marginRight: '20px'}}>Top Score: {this.state.topScore}</p>
+                        <p>{this.state.congratulations}</p>
                     </div>
                 </div>
                 <div>
                     {arr.map((item, index) =>{
-                       return( <div className='card' onClick={()=> this.moveDivs(index)} style={{display:'inline-block'}}>
+                       return( 
+                       <div className='card' onClick={()=> this.moveDivs(index)} style={{display:'inline-block'}}>
                             <img style={{width: '200px', height: '250px', objectFit:'cover', borderRadius: '5px'}} src={item.image}/>
                             <h3>{item.name}</h3>
                             <p>{item.occupation}</p>
