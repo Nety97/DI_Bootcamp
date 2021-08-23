@@ -1,5 +1,4 @@
 import { connect } from "react-redux"
-    
 import {plusOne, minusOne} from '../redux/actions'
 
 
