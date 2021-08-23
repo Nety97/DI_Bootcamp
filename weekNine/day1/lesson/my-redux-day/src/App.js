@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import {connect} from 'react-redux';
 import { changePropOne, changePropTwo } from './redux/actions';
-
+import Child from './components/Child';
 
 class App extends React.Component {
   constructor(){
@@ -25,6 +25,7 @@ class App extends React.Component {
         <input name='propertyOne' type='text' onChange={this.props.changeState}/>
         <p>Change property two</p>
         <input name='propertyTwo' type='text' onChange={this.props.changeState2}/>
+        <Child />
       </div>
     )
   }
@@ -32,8 +33,8 @@ class App extends React.Component {
 
 const mapStateToProps = (state) => {
   return{
-    textOne: state.propertyOne,
-    textTwo: state.propertyTwo
+    textOne: state.reducerOne.propertyOne,
+    textTwo: state.reducerTwo.propertyTwo
   }
 }
 const mapDispatchToProps= (dispatch) =>{

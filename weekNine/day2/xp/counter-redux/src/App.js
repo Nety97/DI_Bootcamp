@@ -1,11 +1,12 @@
 import logo from './logo.svg';
 import './App.css';
-import AutoCompletedText from './components/AutoCompletedText';
-
+import Counter from './components/Counter'
 function App() {
   return (
     <div className="App">
-     <AutoCompletedText/>
+      <header className="App-header">
+        <Counter />
+      </header>
     </div>
   );
 }
