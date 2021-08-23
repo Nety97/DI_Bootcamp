@@ -5,14 +5,32 @@ class AutoCompletedText extends React.Component{
     constructor(){
         super();
         this.state={
-            text: Data
+            text: Data,
+            inp: '',
+            finalw: []
         }
     }
-    
+
+    filter=(e)=>{
+        const {value} = e.target
+        
+        if (value == '') {
+            this.setState({inp: value, finalw: []})
+        } else{
+            let z = this.state.text
+            let x = z.filter((i)=> i.toLowerCase().startsWith(value.toLowerCase()))
+            this.setState({inp: value, finalw: x})
+        }
+    }
     render(){
+
         return(
             <div>
-                {console.log(this.state.text)}
+                
+                <input value={this.state.inp} type='text' onChange={this.filter}/>
+                {this.state.finalw.map(item=>{
+                    return <p key={item}>{item}</p>
+                })}
             </div>
         )
     }

@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import AutoCompletedText from './components/AutoCompletedText';
 
