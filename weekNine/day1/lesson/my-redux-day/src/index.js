@@ -4,10 +4,11 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 // redux
-import {createStore} from 'redux';
+import {applyMiddleware, createStore} from 'redux';
 import {Provider} from 'react-redux';
+import logger from 'redux-logger'; // logger
 import {reducer} from './redux/reducers';
-const store = createStore(reducer);
+const store = createStore(reducer, applyMiddleware(logger)); // from applyMiddleware is logger
 
 ReactDOM.render(
   <React.StrictMode>
