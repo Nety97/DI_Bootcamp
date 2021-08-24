@@ -11,6 +11,7 @@ const db = knex({
     }
 });
 
+
 const consultCountries = () => {
     // let a = {name:'nety', lastname: 'wahnich'}
     // return a 
