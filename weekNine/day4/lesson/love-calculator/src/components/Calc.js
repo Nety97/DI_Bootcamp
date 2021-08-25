@@ -1,9 +1,19 @@
+import {connect} from 'react-redux';
+import {handleClick} from '../redux/actions';
 const Calc = (props) => {
-  const {handleClick} = props;
-  return (
+  return(
     <div>
-      <button onClick={handleClick}>Click</button>
+      <button
+        onClick={()=>props.dispatch(handleClick(props.fname,props.sname))}>
+        Click
+      </button>
     </div>
   )
 }
-export default Calc
+const mapStateToProps = (state) => {
+  return{
+    fname : state.fname,
+    sname : state.sname
+  }
+}
+export default connect(mapStateToProps)(Calc);

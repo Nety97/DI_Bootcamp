@@ -1,9 +1,16 @@
+import {connect} from 'react-redux';
+import {handleSname} from '../redux/actions';
 const Sname = (props) => {
-  const {handleSname, sname} = props
   return(
     <div>
-      <input type="text" onChange={handleSname} /> {sname}
+      <input type='text' name='sname' value={props.sname}
+      onChange={(e) => props.dispatch(handleSname(e.target.value))}/> {props.sname}
     </div>
   )
 }
-export default Sname;
+const mapStateToProps = (state) => {
+  return {
+    sname: state.sname
+  }
+}
+export default connect(mapStateToProps)(Sname);

@@ -1,13 +1,17 @@
+import {connect} from 'react-redux'
 const Res = (props) => {
-  const {results} = props;
-  const {fname,sname,percentage,result} = results
   return(
     <div>
       Results:
-      <div>{fname} & {sname}</div>
-      <div>precatntage: {percentage}</div>
-      <div>result: {result}</div>
+      <div>{props.results.fname} & {props.results.sname}</div>
+      <div>percentage: {props.results.percentage}</div>
+      <div>result: {props.results.result}</div>
     </div>
   )
 }
-export default Res;
+const mapStateToProps = (state) => {
+  return{
+    results: state.results
+  }
+}
+export default connect(mapStateToProps)(Res);
