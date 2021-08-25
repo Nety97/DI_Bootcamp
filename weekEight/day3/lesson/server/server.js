@@ -7,7 +7,8 @@ const app = exp()
 app.use(cors());
 app.use(bp.urlencoded({ extended: false }))
 app.use(bp.json());
-
+const env = require('dotenv');
+env.config();
 
 
 app.get('/', (req, res) =>{
@@ -42,4 +43,7 @@ app.get('/city', (req,res) =>{
     })
 })
 
-app.listen(8080)
+// app.listen(8080)
+app.listen(process.env.PORT ,()=>{
+    console.log('listening to port '+ process.env.PORT);
+  })

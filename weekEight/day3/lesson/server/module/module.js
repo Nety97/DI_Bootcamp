@@ -1,15 +1,21 @@
 const knex = require('knex')
-
 const db = knex({
-    client: 'pg',
+    client:'pg',
     connection: {
-      host : '127.0.0.1',
-      port: '5432',
-      user : 'postgres',
-      password : 'nety',
-      database : 'dvdrental'
+      connectionString: process.env.DATABASE_URL,
+      ssl: { rejectUnauthorized: false }
     }
-});
+  });
+// const db = knex({
+//     client: 'pg',
+//     connection: {
+//       host : '127.0.0.1',
+//       port: '5432',
+//       user : 'postgres',
+//       password : 'nety',
+//       database : 'dvdrental'
+//     }
+// });
 
 
 const consultCountries = () => {
