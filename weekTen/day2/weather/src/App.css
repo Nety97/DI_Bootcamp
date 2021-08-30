@@ -19,7 +19,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  /* justify-content: center; */
   font-size: calc(10px + 2vmin);
   color: white;
 }
@@ -35,4 +35,21 @@
   to {
     transform: rotate(360deg);
   }
+}
+.input{
+  width: 45%;
+  height: 46px;
+
+  font-family: 'VT323', monospace;
+  font-size: 25px;
+  text-align: center;
+}
+.button{
+  
+  height: 46px;
+  border: none;
+  font-family: 'VT323', monospace;
+  font-size: 25px;
+  letter-spacing: 1.5px;
+  cursor: pointer;
 }
