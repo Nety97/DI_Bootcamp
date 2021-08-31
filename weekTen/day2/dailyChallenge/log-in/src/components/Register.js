@@ -1,5 +1,7 @@
 import React from 'react';
-
+import {
+    Link
+  } from "react-router-dom";
 
 class Register extends React.Component{
     constructor(){
@@ -29,6 +31,15 @@ class Register extends React.Component{
             },
             body: JSON.stringify(arr)
         })
+        .then(res => res.json())
+        .then(data => {
+            if (data.message === 'user alredy exists') {
+                this.setState({incorrect: 'Alredy Register, Please Sign In'})
+            } else{
+                console.log(data);
+            }
+        })
+        .catch(err => console.log(err))
         
     }
 
@@ -40,13 +51,24 @@ class Register extends React.Component{
 
                 <h1>Register</h1>
                 <div style={{display: 'table-caption'}}>
-                    <form>
+                    
                         <input name='nameUser' onChange={this.handlerChange} type='text' placeholder='Enter your Name' required/>
                         <input name='email' onChange={this.handlerChange} type='text' placeholder='Enter your Email' required/>
                         <input name='password' onChange={this.handlerChange} type='text' placeholder='Enter your Password' required/>
                         <button onClick={this.sendNode}>Register</button>
-                    </form>
-                    <h3 style={{color:'red'}}>{incorrect}</h3>
+                        <div>
+
+                        
+                    {incorrect ? (
+                        <div>
+                        <h5 style={{color:'red'}}>{incorrect}</h5>
+                        <Link to='/'><h5 style={{color: 'blue'}}>Sign IN</h5></Link>
+                        </div>
+                    ) : (
+                        null
+                    )}
+                    
+                    </div>
                 </div>
             </div>
         )
