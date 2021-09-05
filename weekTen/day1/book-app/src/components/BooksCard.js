@@ -15,7 +15,7 @@ class BooksCard extends React.Component{
         // this.getBooks() //if i want to fetch every word
     }
     getBooks = () => {
-        fetch(`https://www.googleapis.com/books/v1/volumes?q=${this.state.searchBooks}&key=AIzaSyBW9jUwCb66TUhgQ9O_jqYSnliQqwF4pT4`)
+        fetch(`https://www.googleapis.com/books/v1/volumes?q=${this.state.searchBooks}`)
         .then(res => res.json())
         .then(res => {
             // if (!res.items.length === 0) {
