@@ -11,7 +11,8 @@ class Signin extends React.Component{
             email: '',
             password:'',
             user: {},
-            register: ''
+            register: '',
+            wrongPass: ''
         }
     }
 
@@ -35,7 +36,9 @@ class Signin extends React.Component{
         .then(data => {
             if (data.message === 'you first need to register') {
                 this.setState({register: 'The password is invalid or you dont have an account'})
-            }else{
+            } else if (data.message === 'wrong password') {
+                this.setState({wrongPass: 'The password is wrong try again'})
+            } else{
                 console.log(data);
             }
         })
@@ -44,7 +47,7 @@ class Signin extends React.Component{
     }
 
     render(){
-        let {register} = this.state
+        let {register, wrongPass} = this.state
         return(
             <div>
                
@@ -57,6 +60,7 @@ class Signin extends React.Component{
                         <input name='password' onChange={this.handlerChange} type='text' placeholder='Enter your Password' required/>
                         <button onClick={this.sendNode}>Sign In</button>
                         <br/>
+                        <h6 style={{color:'red'}}>{wrongPass}</h6>
                         <h6>{register}</h6>
                         <Link to='/register'><h5 style={{color: 'white'}}>Create an account</h5></Link>
 
