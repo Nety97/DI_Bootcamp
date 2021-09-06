@@ -13,26 +13,36 @@
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+
+nav{
   display: flex;
-  flex-direction: column;
+  justify-content: space-around;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  min-height: 10vh;
+  background-color:rgb(14, 207, 79);
   color: white;
+  min-width: -webkit-fill-available;
 }
-
-.App-link {
-  color: #61dafb;
+.father{
+  display: inline-flex;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.nav-links{
+  width: 30%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  list-style: none;
+}
+.task{
+  background-color: red;
+  list-style: none;
+}
+li{
+  padding: 8px;
+  margin: 3px;
+  width: auto;
+}
+.column{
+  width: 30vw;
+  border-radius: 2px solid black;
 }
