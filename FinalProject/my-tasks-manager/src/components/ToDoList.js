@@ -1,6 +1,6 @@
 import React from "react";
 import {connect} from 'react-redux';
-import {addTask, orderedArr, addInProgress,orderedProgress} from '../redux/actions';
+import {addTask, orderedArr, addInProgress,orderedProgress, addToDone, orderedDone} from '../redux/actions';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 class ToDoList extends React.Component{
@@ -8,7 +8,8 @@ class ToDoList extends React.Component{
         super();
         this.state={
             task: '',
-            taskProgress: ''
+            taskProgress: '',
+            taskDone: ''
         }
     }
 
@@ -38,6 +39,20 @@ class ToDoList extends React.Component{
         this.setState({taskProgress: ''})
         
     }
+    savetaskThree = (e)=>{
+        this.setState({taskDone: e.target.value})
+        
+    }
+    sendReduxThree = () => {
+        let {taskDone} = this.state
+        if (!taskDone) {
+            return 
+        }
+        this.props.addToDone(taskDone)
+        this.setState({taskDone: ''})
+        
+    }
+
     handleOnDragEnd = (result) =>{
         if (!result.destination) {
             return
@@ -47,7 +62,7 @@ class ToDoList extends React.Component{
             const items = this.props.toDoList;
             const [reorderedItem] = items.splice(result.source.index, 1);
             items.splice(result.destination.index, 0, reorderedItem)
-
+            console.log( [reorderedItem] );
             this.props.orderedArr(items)
         }
         if (result.destination.droppableId === result.source.droppableId && result.destination.droppableId === "colunmTwo") {
@@ -57,26 +72,85 @@ class ToDoList extends React.Component{
 
             this.props.orderedProgress(items)
         }
-        if (result.source.droppableId !== result.destination.droppableId) {
-            const items = this.props.toDoList;
+        if (result.destination.droppableId === result.source.droppableId && result.destination.droppableId === "colunmThree") {
+            const items = this.props.doneList;
             const [reorderedItem] = items.splice(result.source.index, 1);
             items.splice(result.destination.index, 0, reorderedItem)
 
-            this.props.orderedArr(items)
+            this.props.orderedDone(items)
+        }
+
+        if (result.source.droppableId !== result.destination.droppableId) {
+            if (result.destination.droppableId === "colunmOne") {
+                if (result.source.droppableId === "colunmTwo") {
+                    const items = this.props.inProgressList;
+                    const [reorderedItem] = items.splice(result.source.index, 1);
+                    // items.splice(result.destination.index, 0)
+        
+                    // console.log(result.destination.index);
+                    // this.props.orderedProgress(items)
+
+                    const itemsTwo = this.props.toDoList;
+                    // const [reorderedItem] = itemsTwo.splice(result.source.index, 1);
+                    // first try to make it work
+                    itemsTwo.splice(result.destination.index, 0, reorderedItem)
+
+                    this.props.orderedArr(itemsTwo)
+                    console.log(this.props.inProgressList);
+                }
+                if (result.source.droppableId === "colunmThree") {
+                    const items = this.props.doneList;
+                    const [reorderedItem] = items.splice(result.source.index, 1);
+
+                    const itemsTwo = this.props.toDoList;
+                    itemsTwo.splice(result.destination.index, 0, reorderedItem)
+
+                    this.props.orderedArr(itemsTwo)
+                }
+                
+            }
+            if (result.destination.droppableId === "colunmTwo") {
+                if (result.source.droppableId === "colunmOne") {
+                    const items = this.props.toDoList;
+                    const [reorderedItem] = items.splice(result.source.index, 1);
+
+                    const itemsTwo = this.props.inProgressList
+                    itemsTwo.splice(result.destination.index, 0, reorderedItem)
+                    this.props.orderedProgress(itemsTwo)
+                }
+                if (result.source.droppableId === "colunmThree") {
+                    const items = this.props.doneList;
+                    const [reorderedItem] = items.splice(result.source.index, 1);
+
+                    const itemsTwo = this.props.inProgressList
+                    itemsTwo.splice(result.destination.index, 0, reorderedItem)
+                    this.props.orderedProgress(itemsTwo)
+                }
+                
+            }
+            if (result.destination.droppableId === "colunmThree") {
+                if (result.source.droppableId === "colunmOne") {
+                    const items = this.props.toDoList;
+                    const [reorderedItem] = items.splice(result.source.index, 1);
+
+                    const itemsTwo = this.props.doneList
+                    itemsTwo.splice(result.destination.index, 0, reorderedItem)
+                    this.props.orderedDone(itemsTwo)
+                }
+                if (result.source.droppableId === "colunmTwo") {
+                    const items = this.props.inProgressList;
+                    const [reorderedItem] = items.splice(result.source.index, 1);
+
+                    const itemsTwo = this.props.doneList
+                    itemsTwo.splice(result.destination.index, 0, reorderedItem)
+                    this.props.orderedDone(itemsTwo)
+                }
+            }
+            
         }
         
     }
-    // handleOnDragEndTwo = (result) =>{
-    //     if (!result.destination) {
-    //         return
-    //     }
-    //     console.log(result);
-        // const items = this.props.inProgressList;
-        // const [reorderedItem] = items.splice(result.source.index, 1);
-        // items.splice(result.destination.index, 0, reorderedItem)
 
-        // this.props.orderedProgress(items)
-    // }
     render(){
         
         return(
@@ -84,7 +158,7 @@ class ToDoList extends React.Component{
                 <DragDropContext onDragEnd={this.handleOnDragEnd}>
                     <Droppable droppableId='colunmOne'>
                         {(provided)=>(
-                            <div className='column'>
+                            <div className='columnOne'>
                                 <h1>To Do List</h1>
                                     <ul {...provided.droppableProps} ref={provided.innerRef}>
                                         
@@ -101,24 +175,24 @@ class ToDoList extends React.Component{
                                     {provided.placeholder}
                                 
                                     <input onChange={this.savetask} value={this.state.task} placeholder='Add some tasks'/>
-
+                                    
                                     <button onClick={this.sendRedux}>Create task</button>
                             </div>
                         )}
                         
                     </Droppable>
-                {/* </DragDropContext>     */}
-                {/* <DragDropContext onDragEnd={this.handleOnDragEndTwo}> */}
+                
+
                     <Droppable droppableId='colunmTwo'>
                         {(provided)=>(
-                            <div className='column'>
+                            <div className='columnTwo'>
                                 <h1>In progress</h1>
                                 <ul  {...provided.droppableProps} ref={provided.innerRef}>
                                     {this.props.inProgressList.map((item,index)=>{
                                         return <Draggable key={item} draggableId={item} index={index}>
                                             {(provided)=>(
                                                 
-                                                <li {...provided.draggableProps} {...provided.dragHandleProps}  ref={provided.innerRef} className='task'>{item} </li>
+                                                <li {...provided.draggableProps} {...provided.dragHandleProps}  ref={provided.innerRef} className='tasktwo'>{item} </li>
                                                 
                                             )}
                                             
@@ -127,8 +201,32 @@ class ToDoList extends React.Component{
                                     
                                 </ul>
                                 {provided.placeholder}
-                                <input onChange={this.savetaskTwo} value={this.state.taskProgress} placeholder='Add some tasks'/>
+                                <input onChange={this.savetaskTwo} value={this.state.taskProgress} placeholder='Add in progress tasks'/>
                                 <button onClick={this.sendReduxTwo}>Create task</button>
+                            </div>
+                        )}
+                    </Droppable>
+
+                    <Droppable droppableId='colunmThree'>
+                        {(provided)=>(
+                            <div className='columnThree'>
+                                <h1>Done</h1>
+                                <ul  {...provided.droppableProps} ref={provided.innerRef}>
+                                    {this.props.doneList.map((item,index)=>{
+                                        return <Draggable key={item} draggableId={item} index={index}>
+                                            {(provided)=>(
+                                                
+                                                <li {...provided.draggableProps} {...provided.dragHandleProps}  ref={provided.innerRef} className='taskthree'>{item} </li>
+                                                
+                                            )}
+                                            
+                                            </Draggable>
+                                    })}
+                                    
+                                </ul>
+                                {provided.placeholder}
+                                <input onChange={this.savetaskThree} value={this.state.taskDone} placeholder='Add done tasks'/>
+                                <button onClick={this.sendReduxThree}>Create task</button>
                             </div>
                         )}
                     </Droppable>
@@ -142,7 +240,8 @@ class ToDoList extends React.Component{
 const mapStateToProps = (state)=>{
     return{
         toDoList: state.toDoList,
-        inProgressList: state.inProgressList
+        inProgressList: state.inProgressList,
+        doneList: state.doneList
     }
 }
 const mapDispatchToProps = (dispatch) => {
@@ -150,7 +249,9 @@ const mapDispatchToProps = (dispatch) => {
         addTask: (val)=> dispatch(addTask(val)),
         orderedArr: (val)=> dispatch(orderedArr(val)),
         addInProgress: (val)=> dispatch(addInProgress(val)),
-        orderedProgress: (val)=> dispatch(orderedProgress(val))
+        orderedProgress: (val)=> dispatch(orderedProgress(val)),
+        addToDone: (val)=> dispatch(addToDone(val)),
+        orderedDone: (val)=> dispatch(orderedDone(val))
     }
   }
 

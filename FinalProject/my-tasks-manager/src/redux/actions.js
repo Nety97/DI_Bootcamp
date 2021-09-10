@@ -1,7 +1,9 @@
 export const ADD = 'ADD';
 export const ORDER = 'ORDER';
 export const PROGRESS = 'PROGRESS';
-export const ORDERPROG = 'ORDERPROG'
+export const ORDERPROG = 'ORDERPROG';
+export const DONE = 'DONE';
+export const ORDERDONE = 'ORDERDONE';
 
 export const addTask =(val)=>{
     return{
@@ -27,6 +29,20 @@ export const addInProgress = (val) => {
 export const orderedProgress = (val) => {
     return{
         type: ORDERPROG,
+        payload: val
+    }
+}
+
+export const addToDone = (val) => {
+    return{
+        type: DONE,
+        payload: val
+    }
+}
+
+export const orderedDone = (val) => {
+    return{
+        type: ORDERDONE,
         payload: val
     }
 }

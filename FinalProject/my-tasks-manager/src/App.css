@@ -37,12 +37,41 @@ nav{
   background-color: red;
   list-style: none;
 }
+.tasktwo{
+  background-color: yellow;
+  list-style: none;
+}
+.taskthree{
+  background-color: rgb(14, 207, 79);
+  list-style: none;
+}
+ul{
+  padding: 0 20px;
+}
 li{
   padding: 8px;
   margin: 3px;
   width: auto;
+  list-style: none;
 }
-.column{
+.columnOne{
   width: 30vw;
-  border-radius: 2px solid black;
+  border: 2px solid red;
+  border-radius: 8px;
+  margin: 10px;
+  box-shadow: 3px 3px red;
+}
+.columnTwo{
+  width: 30vw;
+  border: 2px solid yellow;
+  border-radius: 8px;
+  margin: 10px;
+  box-shadow: 3px 3px yellow;
+}
+.columnThree{
+  width: 30vw;
+  border: 2px solid rgb(14, 207, 79);
+  border-radius: 8px;
+  margin: 10px;
+  box-shadow: 3px 3px rgb(14, 207, 79);
 }
