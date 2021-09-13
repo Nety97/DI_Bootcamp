@@ -1,4 +1,3 @@
-
 import './App.css';
 import {
   BrowserRouter as Router,
@@ -9,7 +8,7 @@ import {
 import Signin from './components/SignIn';
 import Register from './components/Register'
 import Tables from './components/Tables';
-
+import {connect} from 'react-redux';
 
 
 function App() {
@@ -17,7 +16,9 @@ function App() {
     <div className="App">
       <Router>
         <nav >
-          <h1>Welcome</h1>
+          <a href='http://localhost:3000/' className='linkHome'>
+            <h1>Welcome</h1>
+          </a>
             <ul className='nav-links'>
                 <li>
                     <Link to="/register">Register</Link>
@@ -27,12 +28,15 @@ function App() {
                 </li>
             </ul>
         </nav>
-        <Tables/>
+        
         <Switch>
-          <Route path='/register'>
+          <Route exact path='/tasks'>
+            <Tables/>
+          </Route>
+          <Route exact path='/register'>
             <Register />
           </Route>
-          <Route path='/signin'>
+          <Route exact path='/signin'>
             <Signin/>
           </Route>
         </Switch>
@@ -41,4 +45,15 @@ function App() {
   );
 }
 
-export default App;
+const mapStateToProps = (state)=>{
+  return{
+      user: state.user
+  }
+}
+const mapDispatchToProps = (dispatch) => {
+  return {
+      
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

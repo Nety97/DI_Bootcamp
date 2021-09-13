@@ -4,6 +4,7 @@ export const PROGRESS = 'PROGRESS';
 export const ORDERPROG = 'ORDERPROG';
 export const DONE = 'DONE';
 export const ORDERDONE = 'ORDERDONE';
+export const USERDATA = 'USERDATA'
 
 export const addTask =(val)=>{
     return{
@@ -43,6 +44,14 @@ export const addToDone = (val) => {
 export const orderedDone = (val) => {
     return{
         type: ORDERDONE,
+        payload: val
+    }
+}
+
+export const userData = (val) => {
+    console.log(val);
+    return{
+        type: USERDATA,
         payload: val
     }
 }

@@ -75,3 +75,7 @@ li{
   margin: 10px;
   box-shadow: 3px 3px rgb(14, 207, 79);
 }
+.linkHome{
+  text-decoration: none;
+  color: white;
+}

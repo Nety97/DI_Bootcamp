@@ -253,6 +253,6 @@ const mapDispatchToProps = (dispatch) => {
         addToDone: (val)=> dispatch(addToDone(val)),
         orderedDone: (val)=> dispatch(orderedDone(val))
     }
-  }
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(ToDoList)
