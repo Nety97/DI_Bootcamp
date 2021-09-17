@@ -1,15 +1,15 @@
 const express = require('express');
 const bp = require('body-parser')
 const cors = require('cors');
-const env = require('dotenv');
+require('dotenv').config()
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const DB = require('./modules/modules');
-
+const withAuth = require('./controllers/withAuth')
 
 const app = express()
-env.config();
+// env.config();
 app.use(cors());
 app.use(bp.urlencoded({ extended: false }))
 app.use(bp.json());
@@ -24,7 +24,7 @@ app.post('/register', (req,res)=>{
   }
   DB.createUser(name, email, hash)
   .then(data =>{
-    console.log(data);
+    // console.log(data);
     res.send({message: 'ok', data})
   })
   .catch(err => {
@@ -35,7 +35,7 @@ app.post('/register', (req,res)=>{
 
 
 app.post('/signin', (req,res)=>{
-  console.log(req.body);
+  
   const {email, password} = req.body
   if (!email || !password) {
     return res.status(404).json('incorrect form submission')
@@ -59,7 +59,30 @@ app.post('/signin', (req,res)=>{
   })
 })
 
+app.post('/checkToken', withAuth.withAuth, (req,res)=> {res.sendStatus(200)})
 
+app.post('/createTable', (req, res) => {
+  console.log(req.body);
+  const {userId, tableName} = req.body
+  DB.createtable(userId, tableName)
+  .then(data => {
+    res.send(data)
+  })
+  .catch(err => {
+    res.send({message: err})
+  })
+})
+
+app.post('/getUserTables', (req,res) => {
+  const {userId} = req.body
+  DB.getUsertable(userId)
+  .then(data => {
+    res.send(data)
+  })
+  .catch(err => {
+    res.send({message: err})
+  })
+})
 
 app.listen(process.env.PORT, ()=>{
     console.log('listening on port '+ process.env.PORT);

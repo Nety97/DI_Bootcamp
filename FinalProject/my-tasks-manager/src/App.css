@@ -79,3 +79,11 @@ li{
   text-decoration: none;
   color: white;
 }
+.links{
+  text-decoration: none;
+  color: white;
+}
+
+/* min-height: 400px;
+max-height: 400px;
+to make the columns */

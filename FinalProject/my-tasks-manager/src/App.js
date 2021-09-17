@@ -9,45 +9,56 @@ import Signin from './components/SignIn';
 import Register from './components/Register'
 import Tables from './components/Tables';
 import {connect} from 'react-redux';
+import Auth from './Auth';
+import React from 'react';
 
 
-function App() {
-  return (
-    <div className="App">
-      <Router>
-        <nav >
-          <a href='http://localhost:3000/' className='linkHome'>
-            <h1>Welcome</h1>
-          </a>
-            <ul className='nav-links'>
-                <li>
-                    <Link to="/register">Register</Link>
-                </li>
-                <li>
-                    <Link to="/signin">Sign In</Link>
-                </li>
-            </ul>
-        </nav>
-        
-        <Switch>
-          <Route exact path='/tasks'>
-            <Tables/>
-          </Route>
-          <Route exact path='/register'>
-            <Register />
-          </Route>
-          <Route exact path='/signin'>
-            <Signin/>
-          </Route>
-        </Switch>
-      </Router>
-    </div>
-  );
+class App extends React.Component {
+  constructor(){
+    super();
+    this.state = {
+      
+    }
+  }
+ 
+  render (){
+    return (
+      <div className="App">
+        <Router>
+          <nav >
+            <Link to='/' className="links">
+              Welcome
+            </Link>
+              <ul className='nav-links'>
+                  <li>
+                      <Link className='links' to="/register">Register</Link>
+                  </li>
+                  <li>
+                      <Link className='links' to="/signin">Sign In</Link>
+                  </li>
+              </ul>
+          </nav>
+          
+          <Switch>
+            <Route exact  path='/tasks' component={Auth(Tables, this.props.token)}/>
+            <Route exact path='/register'>
+              <Register />
+            </Route>
+            <Route exact path='/signin'>
+              <Signin/>
+            </Route>
+          </Switch>
+        </Router>
+      </div>
+    );
+  }
+  
 }
 
 const mapStateToProps = (state)=>{
   return{
-      user: state.user
+      user: state.user,
+      token: state.token
   }
 }
 const mapDispatchToProps = (dispatch) => {

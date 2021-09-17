@@ -1,6 +1,7 @@
 import React from "react";
 import {userData} from '../redux/actions';
 import {connect} from 'react-redux';
+import { Redirect } from "react-router-dom";
 
 
 class SignIn extends React.Component{
@@ -42,6 +43,7 @@ class SignIn extends React.Component{
     }
 
     render(){
+        
         return(
             <div>
                 <h1>Sign In</h1>
@@ -50,16 +52,22 @@ class SignIn extends React.Component{
                     <input name='password' onChange={this.handlerChange} type='text' value={this.state.password} placeholder='Enter your Password' required/>
                     <button onClick={this.sendNode}>Sign In</button>
                 </div>
+                {this.props.token ? <Redirect to='/tasks'/> : null}
             </div>
         )
     }
 }
 
-
+const mapStateToProps = (state)=>{
+    return{
+        user: state.user,
+        token: state.token 
+    }
+}
 const mapDispatchToProps = (dispatch) => {
     return {
         userData: (val)=> dispatch(userData(val))
     }
 }
 
-export default connect(null, mapDispatchToProps)(SignIn)
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn)

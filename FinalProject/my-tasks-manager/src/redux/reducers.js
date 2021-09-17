@@ -13,7 +13,9 @@ let initState = {
         'sixth',
         'seventh'
     ],
-    user: []
+    user: null,
+    token: null,
+    
 }
 
 export const reducer = (state=initState, action={}) => {
@@ -42,9 +44,11 @@ export const reducer = (state=initState, action={}) => {
         case ORDERDONE:
             return {...state, doneList: [...action.payload]}
         case USERDATA: 
-            let newArrFour = [...state.user]
-            newArrFour.push(action.payload)
-            return {...state, user: [...newArrFour]}
+            let {user, token} = action.payload
+            // console.log('reducer', token);
+            // let newArrFour = [...state.user]
+            // newArrFour.push(action.payload)
+            return {...state, user: [...user], token: token}
         default:
             return {...state}
     }
