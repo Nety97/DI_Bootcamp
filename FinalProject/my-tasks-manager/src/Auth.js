@@ -16,7 +16,7 @@ const Auth = (ComponentToProtect, token) => {
          this.setState({loading:false, redirect:true})
        }
        else{
-        console.log('componentDidMount',token);
+        // console.log('componentDidMount',token);
         fetch('http://localhost:4000/checkToken',{
           method:'POST',
           headers: {

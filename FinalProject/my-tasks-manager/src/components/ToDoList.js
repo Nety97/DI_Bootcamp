@@ -1,16 +1,20 @@
 import React from "react";
 import {connect} from 'react-redux';
-import {addTask, orderedArr, addInProgress,orderedProgress, addToDone, orderedDone} from '../redux/actions';
+import {addTask, orderedArr, addInProgress,orderedProgress, addToDone, orderedDone, userTable} from '../redux/actions';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import NavbarAuth from "./NavbarAuth";
 
 class ToDoList extends React.Component{
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.state={
             task: '',
             taskProgress: '',
-            taskDone: ''
+            taskDone: '',
+            urlParam: props.match,
+            userTable: null
         }
+        
     }
 
     savetask = (e)=>{
@@ -151,88 +155,118 @@ class ToDoList extends React.Component{
         
     }
 
-    render(){
-        
-        return(
-            <div className='father'>
-                <DragDropContext onDragEnd={this.handleOnDragEnd}>
-                    <Droppable droppableId='colunmOne'>
-                        {(provided)=>(
-                            <div className='columnOne'>
-                                <h1>To Do List</h1>
-                                    <ul {...provided.droppableProps} ref={provided.innerRef}>
-                                        
-                                        {this.props.toDoList.map((item,index)=>{
-                                            return <Draggable key={item} draggableId={item} index={index}> 
-                                                    {(provided)=>(
+    componentDidMount () {
+        console.log('hello mount');
+        console.log(this.props.user);
+        fetch('http://localhost:4000/getTable',{
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({userId: this.props.user[0].user_id, table: this.state.urlParam.params.id })
+        })
+        .then(res => res.json())
+        .then(data => {
+           console.log(data);
+           this.props.userTable(data)
+           this.setState({userTable: data})
+           
+        })
+        .catch(err => console.log(err))
+    }
 
-                                                        <li {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef} className='task'>{item}</li>
-                                                    )}
+    render(){
+        // console.log(this.state.urlParam);
+        console.log(this.state.userTable);
+       
+        return(
+            <div>
+
+                <NavbarAuth/>
+                
+                <h1 className='tableH1'>{this.state.urlParam.params.id}</h1>
+
+                <div className='father'>
+                    
+                    <DragDropContext onDragEnd={this.handleOnDragEnd}>
+                        <Droppable droppableId='colunmOne'>
+                            {(provided)=>(
+                                <div className='columnOne'>
+                                    <h1>To Do List</h1>
+                                        <ul {...provided.droppableProps} ref={provided.innerRef}>
+                                            
+                                            {this.props.toDoList.map((item,index)=>{
+                                                return <Draggable key={item} draggableId={item} index={index}> 
+                                                        {(provided)=>(
+
+                                                            <li {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef} className='task'>{item}</li>
+                                                        )}
+                                                    </Draggable>
+                                            })}
+                                            {provided.placeholder}
+                                        </ul>
+                                        {provided.placeholder}
+                                    
+                                        <input className='MyinputToDo' onChange={this.savetask} value={this.state.task} placeholder='Add some tasks'/>
+                                        
+                                        <button className='MybtnToDo' onClick={this.sendRedux}>Create task</button>
+                                </div>
+                            )}
+                            
+                        </Droppable>
+                    
+
+                        <Droppable droppableId='colunmTwo'>
+                            {(provided)=>(
+                                <div className='columnTwo'>
+                                    <h1>In progress</h1>
+                                    <ul  {...provided.droppableProps} ref={provided.innerRef}>
+                                        {this.props.inProgressList.map((item,index)=>{
+                                            return <Draggable key={item} draggableId={item} index={index}>
+                                                {(provided)=>(
+                                                    
+                                                    <li {...provided.draggableProps} {...provided.dragHandleProps}  ref={provided.innerRef} className='tasktwo'>{item} </li>
+                                                    
+                                                )}
+                                                
                                                 </Draggable>
                                         })}
-                                        {provided.placeholder}
+                                        
                                     </ul>
                                     {provided.placeholder}
-                                
-                                    <input onChange={this.savetask} value={this.state.task} placeholder='Add some tasks'/>
-                                    
-                                    <button onClick={this.sendRedux}>Create task</button>
-                            </div>
-                        )}
-                        
-                    </Droppable>
-                
+                                    <input className='MyinputProg' onChange={this.savetaskTwo} value={this.state.taskProgress} placeholder='Add in progress tasks'/>
+                                    <button className='MybtnProg' onClick={this.sendReduxTwo}>Create task</button>
+                                </div>
+                            )}
+                        </Droppable>
 
-                    <Droppable droppableId='colunmTwo'>
-                        {(provided)=>(
-                            <div className='columnTwo'>
-                                <h1>In progress</h1>
-                                <ul  {...provided.droppableProps} ref={provided.innerRef}>
-                                    {this.props.inProgressList.map((item,index)=>{
-                                        return <Draggable key={item} draggableId={item} index={index}>
-                                            {(provided)=>(
+                        <Droppable droppableId='colunmThree'>
+                            {(provided)=>(
+                                <div className='columnThree'>
+                                    <h1>Done</h1>
+                                    <ul  {...provided.droppableProps} ref={provided.innerRef}>
+                                        {this.props.doneList.map((item,index)=>{
+                                            return <Draggable key={item} draggableId={item} index={index}>
+                                                {(provided)=>(
+                                                    
+                                                    <li {...provided.draggableProps} {...provided.dragHandleProps}  ref={provided.innerRef} className='taskthree'>{item} </li>
+                                                    
+                                                )}
                                                 
-                                                <li {...provided.draggableProps} {...provided.dragHandleProps}  ref={provided.innerRef} className='tasktwo'>{item} </li>
-                                                
-                                            )}
-                                            
-                                            </Draggable>
-                                    })}
-                                    
-                                </ul>
-                                {provided.placeholder}
-                                <input onChange={this.savetaskTwo} value={this.state.taskProgress} placeholder='Add in progress tasks'/>
-                                <button onClick={this.sendReduxTwo}>Create task</button>
-                            </div>
-                        )}
-                    </Droppable>
-
-                    <Droppable droppableId='colunmThree'>
-                        {(provided)=>(
-                            <div className='columnThree'>
-                                <h1>Done</h1>
-                                <ul  {...provided.droppableProps} ref={provided.innerRef}>
-                                    {this.props.doneList.map((item,index)=>{
-                                        return <Draggable key={item} draggableId={item} index={index}>
-                                            {(provided)=>(
-                                                
-                                                <li {...provided.draggableProps} {...provided.dragHandleProps}  ref={provided.innerRef} className='taskthree'>{item} </li>
-                                                
-                                            )}
-                                            
-                                            </Draggable>
-                                    })}
-                                    
-                                </ul>
-                                {provided.placeholder}
-                                <input onChange={this.savetaskThree} value={this.state.taskDone} placeholder='Add done tasks'/>
-                                <button onClick={this.sendReduxThree}>Create task</button>
-                            </div>
-                        )}
-                    </Droppable>
-                </DragDropContext>
+                                                </Draggable>
+                                        })}
+                                        
+                                    </ul>
+                                    {provided.placeholder}
+                                    <input className='MyinputDone' onChange={this.savetaskThree} value={this.state.taskDone} placeholder='Add done tasks'/>
+                                    <button className='MybtnDone' onClick={this.sendReduxThree}>Create task</button>
+                                </div>
+                            )}
+                        </Droppable>
+                    </DragDropContext>
+                </div>
             </div>
-            
         )
     }
 }
@@ -241,7 +275,8 @@ const mapStateToProps = (state)=>{
     return{
         toDoList: state.toDoList,
         inProgressList: state.inProgressList,
-        doneList: state.doneList
+        doneList: state.doneList,
+        user: state.user
     }
 }
 const mapDispatchToProps = (dispatch) => {
@@ -251,7 +286,8 @@ const mapDispatchToProps = (dispatch) => {
         addInProgress: (val)=> dispatch(addInProgress(val)),
         orderedProgress: (val)=> dispatch(orderedProgress(val)),
         addToDone: (val)=> dispatch(addToDone(val)),
-        orderedDone: (val)=> dispatch(orderedDone(val))
+        orderedDone: (val)=> dispatch(orderedDone(val)),
+        userTable: (val)=> dispatch(userTable(val))
     }
 }
 

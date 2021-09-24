@@ -2,6 +2,7 @@ import React from "react";
 import {userData} from '../redux/actions';
 import {connect} from 'react-redux';
 import { Redirect } from "react-router-dom";
+import Navbarhome from "./Navbarhome";
 
 
 class SignIn extends React.Component{
@@ -9,7 +10,9 @@ class SignIn extends React.Component{
         super();
         this.state={
             email: '',
-            password:''
+            password:'',
+            wrong: '',
+            badForm: ''
         }
     }
     handlerChange = (e) => {
@@ -28,13 +31,13 @@ class SignIn extends React.Component{
         })
         .then(res => res.json())
         .then(data => {
-            // if (data.message === 'you first need to register') {
-            //     this.setState({register: 'The password is invalid or you dont have an account'})
-            // } else if (data.message === 'wrong password') {
-            //     this.setState({wrongPass: 'The password is wrong try again'})
-            // } else{
-            //     console.log(data);
-            // }
+            if (data === 'wrong credentials') {
+                this.setState({wrong: 'The password is invalid or you dont have an account'})
+            }
+            if (data === 'incorrect form submission') {
+                this.setState({badForm: 'Please fill out the form correctly'})
+            }
+            // console.log(data);
             this.props.userData(data)
         })
         .catch(err => console.log(err))
@@ -43,16 +46,33 @@ class SignIn extends React.Component{
     }
 
     render(){
-        
+        let {wrong, badForm} = this.state
         return(
             <div>
-                <h1>Sign In</h1>
-                <div>
-                    <input name='email' onChange={this.handlerChange} type='text' value={this.state.email} placeholder='Enter your Email' required/>
-                    <input name='password' onChange={this.handlerChange} type='text' value={this.state.password} placeholder='Enter your Password' required/>
-                    <button onClick={this.sendNode}>Sign In</button>
+                <Navbarhome/>
+                <div className='sign-style'>
+                    <h1 className='Myh1'>Sign In</h1>
+                    <div className='forms'>
+                        <input className='margin Myinput' name='email' onChange={this.handlerChange} type='text' value={this.state.email} placeholder='Enter your Email' required/>
+                        <input className='margin Myinput' name='password' onChange={this.handlerChange} type='text' value={this.state.password} placeholder='Enter your Password' required/>
+                        <button className='margin Mybtn' onClick={this.sendNode}>Sign In</button>
+                        {wrong ? (
+                            <div>
+                            <h5 style={{color:'red'}}>{wrong}</h5>
+                            </div>
+                        ) : (
+                            null
+                        )}
+                        {badForm ? (
+                            <div>
+                            <h5 style={{color:'red'}}>{badForm}</h5>
+                            </div>
+                        ) : (
+                            null
+                        )}
+                    </div>
+                    {this.props.token ? <Redirect to='/tasks'/> : null}
                 </div>
-                {this.props.token ? <Redirect to='/tasks'/> : null}
             </div>
         )
     }

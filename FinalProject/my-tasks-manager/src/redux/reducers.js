@@ -1,4 +1,4 @@
-import {ADD, ORDER, PROGRESS, ORDERPROG, DONE, ORDERDONE, USERDATA} from './actions'
+import {ADD, ORDER, PROGRESS, ORDERPROG, DONE, ORDERDONE, USERDATA, USERTABLE} from './actions'
 
 let initState = {
     toDoList: [
@@ -7,7 +7,8 @@ let initState = {
     ],
     inProgressList: [
         'third',
-        'forth'
+        'forth',
+        'new'
     ],
     doneList: [
         'sixth',
@@ -15,6 +16,8 @@ let initState = {
     ],
     user: null,
     token: null,
+    // userTabs: null,
+    userTable: null
     
 }
 
@@ -23,6 +26,7 @@ export const reducer = (state=initState, action={}) => {
         case ADD: 
             let newArr = [...state.toDoList]
             newArr.push(action.payload)
+            
             return {...state, toDoList: [...newArr] }
 
         case ORDER:
@@ -45,10 +49,14 @@ export const reducer = (state=initState, action={}) => {
             return {...state, doneList: [...action.payload]}
         case USERDATA: 
             let {user, token} = action.payload
-            // console.log('reducer', token);
-            // let newArrFour = [...state.user]
-            // newArrFour.push(action.payload)
             return {...state, user: [...user], token: token}
+        // case USERTABS:
+        //     return {...state, userTabs: [...action.payload]}
+        case USERTABLE:
+            let {data_table} = action.payload[0]
+            let {table} = data_table
+            let {toDo, inProgress, done} = table
+            return {...state, toDoList: [...toDo], inProgressList: [...inProgress], doneList: [...done]}
         default:
             return {...state}
     }

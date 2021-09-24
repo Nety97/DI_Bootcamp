@@ -1,12 +1,16 @@
 import React from "react";
-import ToDoList from "./ToDoList";
 import {connect} from 'react-redux'
+import { Link } from "react-router-dom";
+import NavbarAuth from "./NavbarAuth";
+
 class Tables extends React.Component{
     constructor(){
         super();
         this.state={
             project: '',
-            tablesByUser: null
+            tablesByUser: null,
+            userTables: null,
+            tableErr: ''
         }
     }
 
@@ -27,8 +31,12 @@ class Tables extends React.Component{
         })
         .then(res => res.json())
         .then(data => {
-           
-           this.setState({tablesByUser: data})
+            if (data.message === 'Table name alredy exists') {
+                
+                this.setState({tableErr: 'You cannot create 2 tables with the same name', project: ''})
+            } else{
+                this.setState({tablesByUser: data, tableErr: '', project: ''})
+            }
         })
         .catch(err => console.log(err))
         }
@@ -48,22 +56,42 @@ class Tables extends React.Component{
         .then(res => res.json())
         .then(data => {
            console.log(data);
+           
+           this.setState({userTables: data})
+           
         })
         .catch(err => console.log(err))
     }
-
+    
     render(){
-        let {user, token} = this.props
-        console.log(user);
+        let {user} = this.props
+        let {tableErr} = this.state
+       
         console.log(this.state.tablesByUser);
+        console.log(this.state.userTables);
+        
         return(
             <div>
-                <h1>Welcome {user[0].username}</h1>
+                <NavbarAuth/>
+                <h1 className='tableH1'>Welcome {user[0].username}</h1>
 
-                <p>Create new Project</p>
-                <input onChange={this.saveTask} value={this.state.project} placeholder='The name of your project' />
-                <button onClick={this.createTable}>Create</button>
-                <ToDoList/>
+                <h2 className='tableH2'>Create new Project</h2>
+                <input className='margin Myinput' onChange={this.saveTask} value={this.state.project} placeholder='The name of your project' />
+                <button className='Mybtn' onClick={this.createTable}>Create</button>
+                {tableErr ? (
+                            <div>
+                            <h5 style={{color:'red'}}>{tableErr}</h5>
+                            </div>
+                        ) : (
+                            null
+                        )}
+                {this.state.userTables ? this.state.userTables.map((item,index) => {
+                    return <div key={item.table_name}>
+                        <Link  to={`/tasks/${item.table_name}`}><h3>{item.table_name}</h3></Link>
+                        
+                        </div>
+                }) : null}
+                
             </div>
         )
     }
@@ -77,7 +105,7 @@ const mapStateToProps = (state)=>{
 }
 const mapDispatchToProps = (dispatch) => {
     return {
-        
+        // userT: (val) => dispatch(userTables(val))
     }
 }
 

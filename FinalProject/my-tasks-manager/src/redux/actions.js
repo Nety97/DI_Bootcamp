@@ -4,7 +4,8 @@ export const PROGRESS = 'PROGRESS';
 export const ORDERPROG = 'ORDERPROG';
 export const DONE = 'DONE';
 export const ORDERDONE = 'ORDERDONE';
-export const USERDATA = 'USERDATA'
+export const USERDATA = 'USERDATA';
+export const USERTABLE = 'USERTABLE'
 
 export const addTask =(val)=>{
     return{
@@ -49,9 +50,17 @@ export const orderedDone = (val) => {
 }
 
 export const userData = (val) => {
-    console.log(val);
+    console.log('form actions');
     return{
         type: USERDATA,
+        payload: val
+    }
+}
+
+export const userTable = (val) => {
+    console.log('table user', val);
+    return{
+        type: USERTABLE,
         payload: val
     }
 }

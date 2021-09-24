@@ -18,6 +18,9 @@ const checkUser = (email) => {
     return db('users').select('user_id', 'username','email', 'password').where({email: email})
 }
 
+const checkTable = (userId, tableName) => {
+    return db('tables').select('table_name').where({user_id: userId}).andWhere({table_name: tableName})
+}
 const createtable = (userId, tableName) => {
     const jsonTable = {tableName: tableName, table: {
         toDo: [],
@@ -29,12 +32,17 @@ const createtable = (userId, tableName) => {
 }
 
 const getUsertable = (userId) => {
-    return db('tables').select('table_name', 'data_table').where({user_id: userId})
+    return db('tables').select('table_id', 'table_name', 'data_table').where({user_id: userId})
 }
 
+const getTableByUser = (userId, table) => {
+    return db('tables').select('table_id', 'table_name', 'data_table').where({user_id: userId}).andWhere({table_name: table})
+}
 module.exports = {
     createUser,
     checkUser,
+    checkTable,
     createtable,
-    getUsertable
+    getUsertable,
+    getTableByUser
 }

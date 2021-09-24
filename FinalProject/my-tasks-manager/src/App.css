@@ -25,6 +25,7 @@ nav{
 }
 .father{
   display: inline-flex;
+  margin-top: 0px;
 }
 .nav-links{
   width: 30%;
@@ -32,6 +33,7 @@ nav{
   justify-content: space-around;
   align-items: center;
   list-style: none;
+  margin-bottom: 0;
 }
 .task{
   background-color: red;
@@ -84,6 +86,126 @@ li{
   color: white;
 }
 
+.caro{
+  min-width: 90vw;
+  max-height: 40vh;
+  background-color: red;
+}
+.sign-style{
+  display: flex;
+  flex-direction: column;
+  margin-top: 65px;
+
+}
+.forms{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 19px;
+}
+.margin{
+  margin: 7.5px;
+}
+.Mybtn{
+  background-color: rgb(14, 207, 79); 
+  border: none;
+  color: white;
+  padding: 11px 40px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 6px;
+}
+.Mybtn:hover{
+  background-color: rgb(173, 233, 194);
+  color: rgb(12, 177, 67);
+  transition: 0.5s;
+}
+.Myinput{
+  padding: 9px 30px;
+  border-radius: 6px;
+  border: 2px solid rgb(14, 207, 79);
+}
+
+.Myh1{
+  font-size: 3.3rem;
+}
+.tableH1{
+  font-size: 3.3rem;
+  margin-top: 40px;
+  margin-bottom: 60px;
+}
+.tableH2{
+  margin-bottom: 20px;
+  font-size: 2rem;
+}
+.MybtnToDo{
+  background-color: red; 
+  border: none;
+  color: white;
+  padding: 6px 18px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 6px;
+}
+.MybtnToDo:hover{
+  background-color: rgb(252, 182, 182);
+  color: black;
+  transition: 0.5s;
+}
+.MyinputToDo{
+  padding: 4px 18px;
+  border-radius: 6px;
+  border: 2px solid yellow;
+  margin-bottom: 20px;
+}
+.MybtnProg{
+  background-color: yellow; 
+  border: none;
+  color: rgb(151, 151, 64);
+  padding: 6px 18px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 6px;
+}
+.MybtnProg:hover{
+  background-color: rgb(255, 255, 149);
+  color: black;
+  transition: 0.5s;
+}
+.MyinputProg{
+  padding: 4px 18px;
+  border-radius: 6px;
+  border: 2px solid yellow;
+  margin-bottom: 20px;
+}
+.MybtnDone{
+  background-color: rgb(14, 207, 79); 
+  border: none;
+  color: white;
+  padding: 6px 18px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 6px;
+}
+.MybtnDone:hover{
+  background-color: rgb(173, 233, 194);
+  color: rgb(12, 177, 67);
+  transition: 0.5s;
+}
+.MyinputDone{
+  padding: 4px 18px;
+  border-radius: 6px;
+  border: 2px solid rgb(14, 207, 79);
+  margin-bottom: 20px;
+}
 /* min-height: 400px;
 max-height: 400px;
 to make the columns */

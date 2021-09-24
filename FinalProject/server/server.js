@@ -64,7 +64,30 @@ app.post('/checkToken', withAuth.withAuth, (req,res)=> {res.sendStatus(200)})
 app.post('/createTable', (req, res) => {
   console.log(req.body);
   const {userId, tableName} = req.body
-  DB.createtable(userId, tableName)
+  DB.checkTable(userId,tableName)
+  .then(data => {
+    if (data.length > 0) {
+      console.log(data);
+      res.send({message: 'Table name alredy exists'})
+    } else {
+      DB.createtable(userId, tableName)
+      .then(data => {
+        res.send(data)
+      })
+      .catch(err => {
+        res.send({message: err})
+      })
+    }
+  })
+  .catch(err => {
+    res.send({message: err})
+  })
+ 
+})
+
+app.post('/getUserTables', (req,res) => {
+  const {userId} = req.body
+  DB.getUsertable(userId)
   .then(data => {
     res.send(data)
   })
@@ -73,9 +96,9 @@ app.post('/createTable', (req, res) => {
   })
 })
 
-app.post('/getUserTables', (req,res) => {
-  const {userId} = req.body
-  DB.getUsertable(userId)
+app.post('/getTable', (req,res) => {
+  const {userId, table} = req.body
+  DB.getTableByUser(userId, table)
   .then(data => {
     res.send(data)
   })
