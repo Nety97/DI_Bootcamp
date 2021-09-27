@@ -4,7 +4,7 @@ function NavbarAuth() {
     return(
         <nav >
             <Link to='/' className="links">
-              Welcome
+            Trolleo
             </Link>
               <ul className='nav-links'>
                 <li>

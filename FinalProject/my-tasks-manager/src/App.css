@@ -18,8 +18,18 @@ nav{
   display: flex;
   justify-content: space-around;
   align-items: center;
-  min-height: 10vh;
+  min-height: 9vh;
   background-color:rgb(14, 207, 79);
+  color: white;
+  min-width: -webkit-fill-available;
+}
+footer{
+  margin-top: auto;
+  background-color:rgb(14, 207, 79);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  min-height: 7vh;
   color: white;
   min-width: -webkit-fill-available;
 }
@@ -86,10 +96,40 @@ li{
   color: white;
 }
 
-.caro{
-  min-width: 90vw;
-  max-height: 40vh;
+.image{
+  width: 100vw;
+  height: 40vh;
   background-color: red;
+  /* background-image: url('https://images.pexels.com/photos/374631/pexels-photo-374631.jpeg?cs=srgb&dl=pexels-burst-374631.jpg&fm=jpg'); */
+  background-image: url('https://media.gettyimages.com/vectors/vector-set-of-design-templates-and-elements-for-social-media-in-vector-id1125908844?s=2048x2048');
+  /* https://media.gettyimages.com/vectors/set-of-contact-us-and-support-icons-vector-pattern-design-vector-id1183632265?s=2048x2048 */
+  background-size: cover;
+  color: rgb(14, 207, 79);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.titleHome{
+  font-size: 8rem;
+  font-family: 'Permanent Marker', cursive;
+  background-color: white;
+  border-radius: 8px;
+
+}
+.card{
+  align-items: center;
+  margin: 40px;
+  background-color: rgb(14, 207, 79)!important;
+  color: white!important;
+  border-radius: 8px!important;
+}
+.card-img-top{
+  width: 40%!important;
+  margin: 10px;
+  
+}
+.someText{
+  margin-bottom: 50px;
 }
 .sign-style{
   display: flex;

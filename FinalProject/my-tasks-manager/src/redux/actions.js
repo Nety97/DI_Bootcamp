@@ -7,11 +7,23 @@ export const ORDERDONE = 'ORDERDONE';
 export const USERDATA = 'USERDATA';
 export const USERTABLE = 'USERTABLE'
 
-export const addTask =(val)=>{
-    return{
-        type: ADD,
-        payload: val
-    }
+export const addTask = (val)=> (dispatch) => {
+
+    console.log(val);
+    fetch('http://localhost:4000/addTask',{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(val)
+    })
+    .then(data => { 
+        dispatch({
+            type: ADD,
+            payload: val.task
+        })
+    })
+    .catch(err => console.log(err))
 }
 
 export const orderedArr = (val) => {
@@ -24,7 +36,7 @@ export const orderedArr = (val) => {
 export const addInProgress = (val) => {
     return{
         type: PROGRESS,
-        payload: val
+        payload: val.task
     }
 }
 
@@ -38,7 +50,7 @@ export const orderedProgress = (val) => {
 export const addToDone = (val) => {
     return{
         type: DONE,
-        payload: val
+        payload: val.task
     }
 }
 
@@ -50,7 +62,7 @@ export const orderedDone = (val) => {
 }
 
 export const userData = (val) => {
-    console.log('form actions');
+    // console.log('form actions');
     return{
         type: USERDATA,
         payload: val
@@ -58,7 +70,7 @@ export const userData = (val) => {
 }
 
 export const userTable = (val) => {
-    console.log('table user', val);
+    // console.log('table user', val);
     return{
         type: USERTABLE,
         payload: val

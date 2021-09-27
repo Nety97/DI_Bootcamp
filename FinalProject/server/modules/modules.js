@@ -38,11 +38,41 @@ const getUsertable = (userId) => {
 const getTableByUser = (userId, table) => {
     return db('tables').select('table_id', 'table_name', 'data_table').where({user_id: userId}).andWhere({table_name: table})
 }
+
+const addTo = (task, userId, table) => {
+    return db.transaction(trx => {
+        trx('tables').select('data_table').where({user_id: userId}).andWhere({table_name: table}).returning('data_table')
+        .then(data_table => {
+            let userTable = data_table[0]
+            let {tableName, table} = userTable.data_table
+            let{toDo} = table
+            toDo.push(task)
+            // console.log(data_table);
+            let newTable = [...data_table]
+            JSON.stringify(newTable)
+            console.log(newTable);
+            return trx('tables').where({user_id: userId}).andWhere({table_name: table}).returning('data_table')
+                // .update({data_table: newTable})
+        })
+        .then(trx.commit)
+        .catch(e => {
+            console.log(e);
+            trx.rollback
+        })
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(404).json('unable to register')
+    }) 
+}
+
+
 module.exports = {
     createUser,
     checkUser,
     checkTable,
     createtable,
     getUsertable,
-    getTableByUser
+    getTableByUser,
+    addTo
 }

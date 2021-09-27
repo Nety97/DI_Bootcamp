@@ -16,7 +16,6 @@ let initState = {
     ],
     user: null,
     token: null,
-    // userTabs: null,
     userTable: null
     
 }
@@ -50,8 +49,6 @@ export const reducer = (state=initState, action={}) => {
         case USERDATA: 
             let {user, token} = action.payload
             return {...state, user: [...user], token: token}
-        // case USERTABS:
-        //     return {...state, userTabs: [...action.payload]}
         case USERTABLE:
             let {data_table} = action.payload[0]
             let {table} = data_table

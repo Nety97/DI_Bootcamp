@@ -6,7 +6,8 @@ const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const DB = require('./modules/modules');
-const withAuth = require('./controllers/withAuth')
+const withAuth = require('./controllers/withAuth');
+const { DatabaseError } = require('pg-protocol');
 
 const app = express()
 // env.config();
@@ -15,7 +16,7 @@ app.use(bp.urlencoded({ extended: false }))
 app.use(bp.json());
 
 app.post('/register', (req,res)=>{
-  console.log(req.body);
+  // console.log(req.body);
   const {name, email, password} = req.body
   const salt = bcrypt.genSaltSync(saltRounds);
   const hash = bcrypt.hashSync(password, salt);
@@ -62,7 +63,7 @@ app.post('/signin', (req,res)=>{
 app.post('/checkToken', withAuth.withAuth, (req,res)=> {res.sendStatus(200)})
 
 app.post('/createTable', (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
   const {userId, tableName} = req.body
   DB.checkTable(userId,tableName)
   .then(data => {
@@ -106,6 +107,23 @@ app.post('/getTable', (req,res) => {
     res.send({message: err})
   })
 })
+
+app.post('/addTask', (req, res) => {
+  const {task, userId, table} = req.body
+  DB.addTo(task, userId, table) 
+  .then(data => {
+    console.log(data.length);
+  
+  })
+  .catch(err => {
+    res.send({message: err})
+  })
+})
+
+
+
+
+
 
 app.listen(process.env.PORT, ()=>{
     console.log('listening on port '+ process.env.PORT);

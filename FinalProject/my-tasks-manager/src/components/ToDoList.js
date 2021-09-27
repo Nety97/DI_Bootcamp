@@ -26,7 +26,12 @@ class ToDoList extends React.Component{
         if (!task) {
             return 
         }
-        this.props.addTask(task)
+        let val = {
+            task: task,
+            userId: this.props.user[0].user_id,
+            table: this.state.urlParam.params.id
+        }
+        this.props.addTask(val)
         this.setState({task: ''})
         
     }
@@ -39,7 +44,12 @@ class ToDoList extends React.Component{
         if (!taskProgress) {
             return 
         }
-        this.props.addInProgress(taskProgress)
+        let val = {
+            task: taskProgress,
+            userId: this.props.user[0].user_id,
+            table: this.state.urlParam.params.id
+        }
+        this.props.addInProgress(val)
         this.setState({taskProgress: ''})
         
     }
@@ -52,7 +62,12 @@ class ToDoList extends React.Component{
         if (!taskDone) {
             return 
         }
-        this.props.addToDone(taskDone)
+        let val = {
+            task: taskDone,
+            userId: this.props.user[0].user_id,
+            table: this.state.urlParam.params.id
+        }
+        this.props.addToDone(val)
         this.setState({taskDone: ''})
         
     }
@@ -68,6 +83,7 @@ class ToDoList extends React.Component{
             items.splice(result.destination.index, 0, reorderedItem)
             console.log( [reorderedItem] );
             this.props.orderedArr(items)
+            
         }
         if (result.destination.droppableId === result.source.droppableId && result.destination.droppableId === "colunmTwo") {
             const items = this.props.inProgressList;
@@ -156,8 +172,8 @@ class ToDoList extends React.Component{
     }
 
     componentDidMount () {
-        console.log('hello mount');
-        console.log(this.props.user);
+        // console.log('hello mount');
+        // console.log(this.props.user);
         fetch('http://localhost:4000/getTable',{
             method: 'POST',
             mode: 'cors',
@@ -168,7 +184,7 @@ class ToDoList extends React.Component{
         })
         .then(res => res.json())
         .then(data => {
-           console.log(data);
+        //    console.log(data);
            this.props.userTable(data)
            this.setState({userTable: data})
            
@@ -178,7 +194,7 @@ class ToDoList extends React.Component{
 
     render(){
         // console.log(this.state.urlParam);
-        console.log(this.state.userTable);
+        // console.log(this.state.userTable);
        
         return(
             <div>

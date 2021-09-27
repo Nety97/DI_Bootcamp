@@ -55,7 +55,7 @@ class Tables extends React.Component{
         })
         .then(res => res.json())
         .then(data => {
-           console.log(data);
+        //    console.log(data);
            
            this.setState({userTables: data})
            
@@ -67,8 +67,8 @@ class Tables extends React.Component{
         let {user} = this.props
         let {tableErr} = this.state
        
-        console.log(this.state.tablesByUser);
-        console.log(this.state.userTables);
+        // console.log(this.state.tablesByUser);
+        // console.log(this.state.userTables);
         
         return(
             <div>
