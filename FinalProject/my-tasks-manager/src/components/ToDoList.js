@@ -33,6 +33,10 @@ class ToDoList extends React.Component{
         }
         this.props.addTask(val)
         this.setState({task: ''})
+        // this.saveTaskOnDBOne({task: this.props.toDoList, 
+        //     userId: this.props.user[0].user_id,
+        //     table: this.state.urlParam.params.id})
+        //     console.log(this.props.toDoList );
         
     }
     savetaskTwo = (e)=>{
@@ -71,7 +75,20 @@ class ToDoList extends React.Component{
         this.setState({taskDone: ''})
         
     }
-
+    saveTaskOnDBOne = () => {
+        fetch('http://localhost:4000/addTask',{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(this.props.toDoList)
+    })
+    .then(data => {
+        console.log(data); 
+        
+    })
+    .catch(err => console.log(err))
+    }
     handleOnDragEnd = (result) =>{
         if (!result.destination) {
             return

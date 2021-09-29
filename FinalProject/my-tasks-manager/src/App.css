@@ -114,7 +114,8 @@ li{
   font-family: 'Permanent Marker', cursive;
   background-color: white;
   border-radius: 8px;
-
+  padding: 5px;
+  margin-bottom: 0;
 }
 .card{
   align-items: center;
@@ -122,6 +123,7 @@ li{
   background-color: rgb(14, 207, 79)!important;
   color: white!important;
   border-radius: 8px!important;
+  /* min-width: 18rem!important; */
 }
 .card-img-top{
   width: 40%!important;

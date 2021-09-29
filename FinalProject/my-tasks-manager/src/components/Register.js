@@ -54,7 +54,7 @@ class Register extends React.Component{
                     <div className='forms'>
                         <input className='margin Myinput' name='nameUser' onChange={this.handlerChange} value={this.state.nameUser} type='text' placeholder='Enter your Name' required/>
                         <input className='margin Myinput' name='email' onChange={this.handlerChange} value={this.state.email} type='text' placeholder='Enter your Email' required/>
-                        <input className='margin Myinput' name='password' onChange={this.handlerChange} value={this.state.password} type='text' placeholder='Enter your Password' required/>
+                        <input className='margin Myinput' name='password' onChange={this.handlerChange} value={this.state.password} type='password' placeholder='Enter your Password' required/>
                         <button className='margin Mybtn' onClick={this.sendDataBase}>Register</button>
                         {incorrect ? (
                             <div>

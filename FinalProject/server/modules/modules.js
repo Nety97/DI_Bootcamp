@@ -39,20 +39,27 @@ const getTableByUser = (userId, table) => {
     return db('tables').select('table_id', 'table_name', 'data_table').where({user_id: userId}).andWhere({table_name: table})
 }
 
-const addTo = (task, userId, table) => {
+const addTo = (task, userId, table, res) => {
     return db.transaction(trx => {
-        trx('tables').select('data_table').where({user_id: userId}).andWhere({table_name: table}).returning('data_table')
+        trx('tables')
+        .select('data_table')
+        .where({user_id: userId})
+        .andWhere({table_name: table})
+        .returning('data_table')
         .then(data_table => {
-            let userTable = data_table[0]
-            let {tableName, table} = userTable.data_table
-            let{toDo} = table
-            toDo.push(task)
-            // console.log(data_table);
-            let newTable = [...data_table]
-            JSON.stringify(newTable)
-            console.log(newTable);
-            return trx('tables').where({user_id: userId}).andWhere({table_name: table}).returning('data_table')
-                // .update({data_table: newTable})
+            const userTable = data_table[0]
+            const {table:currentTable} = userTable.data_table?.data_table || userTable.data_table
+            console.log(data_table);
+            console.log(userTable);
+            console.log(currentTable);
+            const {toDo} = currentTable
+            toDo = [...task]
+            return trx('tables')
+            .update(userTable)
+            .where({user_id: userId})
+            .andWhere({table_name: table})
+            .returning('data_table')
+              
         })
         .then(trx.commit)
         .catch(e => {
@@ -62,7 +69,7 @@ const addTo = (task, userId, table) => {
     })
     .catch(err => {
         console.log(err);
-        res.status(404).json('unable to register')
+        res.status(404).json('unable to save it')
     }) 
 }
 

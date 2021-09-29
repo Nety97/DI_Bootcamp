@@ -7,23 +7,28 @@ export const ORDERDONE = 'ORDERDONE';
 export const USERDATA = 'USERDATA';
 export const USERTABLE = 'USERTABLE'
 
-export const addTask = (val)=> (dispatch) => {
+export const addTask = (val) =>  { //(dispatch) =>
 
-    console.log(val);
-    fetch('http://localhost:4000/addTask',{
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(val)
-    })
-    .then(data => { 
-        dispatch({
-            type: ADD,
-            payload: val.task
-        })
-    })
-    .catch(err => console.log(err))
+    // console.log(val);
+    // fetch('http://localhost:4000/addTask',{
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //         },
+    //         body: JSON.stringify(val)
+    // })
+    // .then(data => {
+    //     console.log(data); 
+    //     dispatch({
+    //         type: ADD,
+    //         payload: data.currentTask
+    //     })
+    // })
+    // .catch(err => console.log(err))
+    return{
+        type: ADD,
+        payload: val.task
+    }
 }
 
 export const orderedArr = (val) => {

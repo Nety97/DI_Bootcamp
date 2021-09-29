@@ -1,19 +1,9 @@
 import {ADD, ORDER, PROGRESS, ORDERPROG, DONE, ORDERDONE, USERDATA, USERTABLE} from './actions'
 
 let initState = {
-    toDoList: [
-        'first',
-        'second'
-    ],
-    inProgressList: [
-        'third',
-        'forth',
-        'new'
-    ],
-    doneList: [
-        'sixth',
-        'seventh'
-    ],
+    toDoList: [],
+    inProgressList: [],
+    doneList: [],
     user: null,
     token: null,
     userTable: null

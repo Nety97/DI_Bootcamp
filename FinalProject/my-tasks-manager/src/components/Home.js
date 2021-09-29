@@ -13,12 +13,11 @@ function Home() {
             <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'center'}}>
                 <div>
                     <Card style={{ width: '18rem' }}>
-                        <Card.Img variant="top" src="https://img-premium.flaticon.com/png/512/3201/premium/3201623.png?token=exp=1632656279~hmac=c527dc30a8cc3239364182fe28cdc3ae" />
+                        <Card.Img variant="top" src="https://cdn-icons-png.flaticon.com/512/4149/4149646.png" />
                         <Card.Body>
                             <Card.Title>Manage your tasks</Card.Title>
                             <Card.Text>
-                            Some quick example text to build on the card title and make up the bulk of
-                            the card's content.
+                                When you have so many task and you dont know where to start, we are here for you!
                             </Card.Text>
                            
                         </Card.Body>
@@ -30,8 +29,7 @@ function Home() {
                         <Card.Body>
                             <Card.Title>Save Time</Card.Title>
                             <Card.Text>
-                            Some quick example text to build on the card title and make up the bulk of
-                            the card's content.
+                                You always have you tasks close so no more wasting time thinking what you have to do.
                             </Card.Text>
                            
                         </Card.Body>
@@ -43,8 +41,7 @@ function Home() {
                         <Card.Body>
                             <Card.Title>Control your Workflow</Card.Title>
                             <Card.Text>
-                            Some quick example text to build on the card title and make up the bulk of
-                            the card's content.
+                                Being organized will help you increase you productivity. <br/>Say tanks later.
                             </Card.Text>
                            
                         </Card.Body>
@@ -57,7 +54,7 @@ function Home() {
                     Create many tables and tasks as you want. <br/> Organice them by status: To do, In progress and Done. <br/> 
                     Try out. Its free!
                 </h5>
-                <Link to='/register' className='margin Mybtn'>Let's Start</Link>
+                <Link style={{marginTop: '25px'}} to='/register' className='margin Mybtn'>Let's Start</Link>
             </div>
             <Footer/>
         </div>     

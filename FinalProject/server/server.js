@@ -110,10 +110,10 @@ app.post('/getTable', (req,res) => {
 
 app.post('/addTask', (req, res) => {
   const {task, userId, table} = req.body
-  DB.addTo(task, userId, table) 
+  DB.addTo(task, userId, table, res) 
   .then(data => {
-    console.log(data.length);
-  
+    console.log(data);
+    res.send(data)
   })
   .catch(err => {
     res.send({message: err})

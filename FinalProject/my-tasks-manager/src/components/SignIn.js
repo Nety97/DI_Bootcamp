@@ -54,7 +54,7 @@ class SignIn extends React.Component{
                     <h1 className='Myh1'>Sign In</h1>
                     <div className='forms'>
                         <input className='margin Myinput' name='email' onChange={this.handlerChange} type='text' value={this.state.email} placeholder='Enter your Email' required/>
-                        <input className='margin Myinput' name='password' onChange={this.handlerChange} type='text' value={this.state.password} placeholder='Enter your Password' required/>
+                        <input className='margin Myinput' name='password' onChange={this.handlerChange} type='password' value={this.state.password} placeholder='Enter your Password' required/>
                         <button className='margin Mybtn' onClick={this.sendNode}>Sign In</button>
                         {wrong ? (
                             <div>
