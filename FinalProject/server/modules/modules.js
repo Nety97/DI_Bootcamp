@@ -39,7 +39,7 @@ const getTableByUser = (userId, table) => {
     return db('tables').select('table_id', 'table_name', 'data_table').where({user_id: userId}).andWhere({table_name: table})
 }
 
-const addTo = (task, userId, table, res) => {
+const addTo = (userId, table, todoArr, progressArr, doneArr, res) => {
     return db.transaction(trx => {
         trx('tables')
         .select('data_table')
@@ -47,13 +47,16 @@ const addTo = (task, userId, table, res) => {
         .andWhere({table_name: table})
         .returning('data_table')
         .then(data_table => {
-            const userTable = data_table[0]
-            const {table:currentTable} = userTable.data_table?.data_table || userTable.data_table
-            console.log(data_table);
-            console.log(userTable);
-            console.log(currentTable);
-            const {toDo} = currentTable
-            toDo = [...task]
+            let userTable = data_table[0]
+            let {table:currentTable} = userTable.data_table?.data_table || userTable.data_table
+            // console.log(data_table);
+            // console.log(userTable);
+            // console.log(currentTable);
+            let {toDo, inProgress, done} = currentTable
+            console.log(progressArr);
+            toDo = [...todoArr]
+            inProgress = [...progressArr]
+            done = [...doneArr]
             return trx('tables')
             .update(userTable)
             .where({user_id: userId})

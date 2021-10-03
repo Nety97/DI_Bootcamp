@@ -109,8 +109,9 @@ app.post('/getTable', (req,res) => {
 })
 
 app.post('/addTask', (req, res) => {
-  const {task, userId, table} = req.body
-  DB.addTo(task, userId, table, res) 
+  const {userId, table, todoArr, progressArr, doneArr} = req.body
+  console.log(progressArr);
+  DB.addTo(userId, table, todoArr, progressArr, doneArr, res) 
   .then(data => {
     console.log(data);
     res.send(data)

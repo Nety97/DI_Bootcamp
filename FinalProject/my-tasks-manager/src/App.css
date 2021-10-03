@@ -36,6 +36,8 @@ footer{
 .father{
   display: inline-flex;
   margin-top: 0px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 .nav-links{
   width: 30%;
@@ -48,14 +50,23 @@ footer{
 .task{
   background-color: red;
   list-style: none;
+  border-radius: 8px;
 }
 .tasktwo{
   background-color: yellow;
   list-style: none;
+  border-radius: 8px;
 }
 .taskthree{
   background-color: rgb(14, 207, 79);
   list-style: none;
+  border-radius: 8px;
+}
+.trashli{
+  background-color: rgb(255, 0, 0);
+  color: white;
+  list-style: none;
+  border-radius: 8px;
 }
 ul{
   padding: 0 20px;
@@ -81,6 +92,13 @@ li{
   box-shadow: 3px 3px yellow;
 }
 .columnThree{
+  width: 30vw;
+  border: 2px solid rgb(14, 207, 79);
+  border-radius: 8px;
+  margin: 10px;
+  box-shadow: 3px 3px rgb(14, 207, 79);
+}
+.trash{
   width: 30vw;
   border: 2px solid rgb(14, 207, 79);
   border-radius: 8px;

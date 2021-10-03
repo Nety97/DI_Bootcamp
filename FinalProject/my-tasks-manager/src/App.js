@@ -15,6 +15,7 @@ import Navbarhome from './components/Navbarhome';
 import Home from './components/Home';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ToDoList from './components/ToDoList';
+import DragAndDrop from './components/DragAndDrop';
 
 class App extends React.Component {
   constructor(){
@@ -31,7 +32,7 @@ class App extends React.Component {
           
           <Switch>
             <Route exact  path='/tasks' component={Auth(Tables, this.props.token)}/>
-            <Route exact path='/tasks/:id' component={Auth(ToDoList, this.props.token)}/>
+            <Route exact path='/tasks/:id' component={Auth(DragAndDrop, this.props.token)}/>
             <Route exact path='/register'>
               <Register />
             </Route>
@@ -41,6 +42,9 @@ class App extends React.Component {
             <Route exact path='/'>
               <Navbarhome/>
               <Home/>
+            </Route>
+            <Route path='/x'>
+              <DragAndDrop/>
             </Route>
           </Switch>
         </Router>
