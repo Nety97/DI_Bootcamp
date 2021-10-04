@@ -39,28 +39,38 @@ const getTableByUser = (userId, table) => {
     return db('tables').select('table_id', 'table_name', 'data_table').where({user_id: userId}).andWhere({table_name: table})
 }
 
-const addTo = (userId, table, todoArr, progressArr, doneArr, res) => {
+const addTo = (userId, tableN, todoArr, progressArr, doneArr, res) => {
+    // console.log(todoArr);
     return db.transaction(trx => {
         trx('tables')
         .select('data_table')
         .where({user_id: userId})
-        .andWhere({table_name: table})
+        .andWhere({table_name: tableN})
         .returning('data_table')
-        .then(data_table => {
-            let userTable = data_table[0]
-            let {table:currentTable} = userTable.data_table?.data_table || userTable.data_table
+        .then(data_tableF => {
+            let userTable = data_tableF[0]
+            let currentTable = userTable.data_table?.data_table || userTable.data_table
+            // let {table:currentTable} = userTable.data_table
+            // console.log(data_tableF);
             // console.log(data_table);
-            // console.log(userTable);
             // console.log(currentTable);
-            let {toDo, inProgress, done} = currentTable
-            console.log(progressArr);
+            // console.log(todoArr, progressArr, doneArr);
+            let {toDo, inProgress, done} = currentTable.table
+            // console.log(progressArr);
             toDo = [...todoArr]
             inProgress = [...progressArr]
             done = [...doneArr]
+            console.log("hh",toDo);
+            const jsonTwo = {tableName: tableN, table: {
+                toDo: [...toDo],
+                inProgress: [...inProgress],
+                done: [...done]
+            }}
+            JSON.stringify(jsonTwo)
             return trx('tables')
-            .update(userTable)
             .where({user_id: userId})
-            .andWhere({table_name: table})
+            .andWhere({table_name: tableN})
+            .update({data_table: jsonTwo})
             .returning('data_table')
               
         })

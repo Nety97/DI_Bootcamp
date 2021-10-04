@@ -51,8 +51,9 @@ class DragAndDrop extends React.Component{
         let copyArr = [...progressArray]
         copyArr.push(taskProgress)
         
-        this.setState({progressArray: [...copyArr], taskProgress: ''})
-        this.saveTasksOnDB(this.state.todoArray, this.state.progressArray, this.state.doneArray)
+        this.setState({progressArray: [...copyArr], taskProgress: ''}, ()=> {
+            this.saveTasksOnDB(this.state.todoArray, this.state.progressArray, this.state.doneArray)
+        })
     }
 
     sendReduxThree = () => {
@@ -62,8 +63,9 @@ class DragAndDrop extends React.Component{
         }
         let copyArr = [...doneArray]
         copyArr.push(taskDone)
-        this.setState({doneArray: [...copyArr], taskDone: ''})
-        this.saveTasksOnDB(this.state.todoArray, this.state.progressArray, this.state.doneArray)
+        this.setState({doneArray: [...copyArr], taskDone: ''}, ()=> {
+            this.saveTasksOnDB(this.state.todoArray, this.state.progressArray, this.state.doneArray)
+        })
     }
 
 
