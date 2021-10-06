@@ -8,7 +8,6 @@ class Tables extends React.Component{
         super();
         this.state={
             project: '',
-            tablesByUser: null,
             userTables: null,
             tableErr: ''
         }
@@ -35,7 +34,7 @@ class Tables extends React.Component{
                 
                 this.setState({tableErr: 'You cannot create 2 tables with the same name', project: ''})
             } else{
-                this.setState({tablesByUser: data, tableErr: '', project: ''})
+                this.setState({userTables: data, tableErr: '', project: ''})
             }
         })
         .catch(err => console.log(err))
@@ -66,8 +65,7 @@ class Tables extends React.Component{
     render(){
         let {user} = this.props
         let {tableErr} = this.state
-       
-        // console.log(this.state.tablesByUser);
+
         // console.log(this.state.userTables);
         
         return(

@@ -80,7 +80,9 @@ class DragAndDrop extends React.Component{
             const [reorderedItem] = items.splice(result.source.index, 1);
             items.splice(result.destination.index, 0, reorderedItem)
             console.log( [reorderedItem] );
-            this.setState({todoArray: [...items]})
+            this.setState({todoArray: [...items]}, ()=> {
+                this.saveTasksOnDB(this.state.todoArray, this.state.progressArray, this.state.doneArray)
+            })
             
         }
         if (result.destination.droppableId === result.source.droppableId && result.destination.droppableId === "colunmTwo") {
@@ -88,21 +90,27 @@ class DragAndDrop extends React.Component{
             const [reorderedItem] = items.splice(result.source.index, 1);
             items.splice(result.destination.index, 0, reorderedItem)
 
-            this.setState({progressArray: [...items]})
+            this.setState({progressArray: [...items]}, ()=> {
+                this.saveTasksOnDB(this.state.todoArray, this.state.progressArray, this.state.doneArray)
+            })
         }
         if (result.destination.droppableId === result.source.droppableId && result.destination.droppableId === "colunmThree") {
             const items = this.state.doneArray;
             const [reorderedItem] = items.splice(result.source.index, 1);
             items.splice(result.destination.index, 0, reorderedItem)
 
-            this.setState({doneArray: [...items]})
+            this.setState({doneArray: [...items]}, ()=> {
+                this.saveTasksOnDB(this.state.todoArray, this.state.progressArray, this.state.doneArray)
+            })
         }
         if (result.destination.droppableId === result.source.droppableId && result.destination.droppableId === "trash") {
             const items = this.state.trash;
             const [reorderedItem] = items.splice(result.source.index, 1);
             items.splice(result.destination.index, 0, reorderedItem)
 
-            this.setState({trash: [...items]})
+            this.setState({trash: [...items]}, ()=> {
+                this.saveTasksOnDB(this.state.todoArray, this.state.progressArray, this.state.doneArray)
+            })
         }
 
         if (result.source.droppableId !== result.destination.droppableId) {
@@ -120,8 +128,10 @@ class DragAndDrop extends React.Component{
                     // first try to make it work
                     itemsTwo.splice(result.destination.index, 0, reorderedItem)
 
-                    this.setState({todoArray: [...itemsTwo]})
-                    console.log(this.state.progressArray);
+                    this.setState({todoArray: [...itemsTwo]}, ()=> {
+                        this.saveTasksOnDB(this.state.todoArray, this.state.progressArray, this.state.doneArray)
+                    })
+                    // console.log(this.state.progressArray);
                 }
                 if (result.source.droppableId === "colunmThree") {
                     const items = this.state.doneArray;
@@ -130,7 +140,9 @@ class DragAndDrop extends React.Component{
                     const itemsTwo = this.state.todoArray;
                     itemsTwo.splice(result.destination.index, 0, reorderedItem)
 
-                    this.setState({todoArray: [...itemsTwo]})
+                    this.setState({todoArray: [...itemsTwo]}, ()=> {
+                        this.saveTasksOnDB(this.state.todoArray, this.state.progressArray, this.state.doneArray)
+                    })
                 }
                 if (result.source.droppableId === "trash") {
                     const items = this.state.trash;
@@ -139,7 +151,9 @@ class DragAndDrop extends React.Component{
                     const itemsTwo = this.state.todoArray;
                     itemsTwo.splice(result.destination.index, 0, reorderedItem)
 
-                    this.setState({todoArray: [...itemsTwo]})
+                    this.setState({todoArray: [...itemsTwo]}, ()=> {
+                        this.saveTasksOnDB(this.state.todoArray, this.state.progressArray, this.state.doneArray)
+                    })
                 }
                 
             }
@@ -150,7 +164,9 @@ class DragAndDrop extends React.Component{
 
                     const itemsTwo = this.state.progressArray
                     itemsTwo.splice(result.destination.index, 0, reorderedItem)
-                    this.setState({progressArray: [...itemsTwo]})
+                    this.setState({progressArray: [...itemsTwo]}, ()=> {
+                        this.saveTasksOnDB(this.state.todoArray, this.state.progressArray, this.state.doneArray)
+                    })
                 }
                 if (result.source.droppableId === "colunmThree") {
                     const items = this.state.doneArray;
@@ -158,7 +174,9 @@ class DragAndDrop extends React.Component{
 
                     const itemsTwo = this.state.progressArray
                     itemsTwo.splice(result.destination.index, 0, reorderedItem)
-                    this.setState({progressArray: [...itemsTwo]})
+                    this.setState({progressArray: [...itemsTwo]}, ()=> {
+                        this.saveTasksOnDB(this.state.todoArray, this.state.progressArray, this.state.doneArray)
+                    })
                 }
                 if (result.source.droppableId === "trash") {
                     const items = this.state.trash;
@@ -166,7 +184,9 @@ class DragAndDrop extends React.Component{
 
                     const itemsTwo = this.state.progressArray
                     itemsTwo.splice(result.destination.index, 0, reorderedItem)
-                    this.setState({progressArray: [...itemsTwo]})
+                    this.setState({progressArray: [...itemsTwo]}, ()=> {
+                        this.saveTasksOnDB(this.state.todoArray, this.state.progressArray, this.state.doneArray)
+                    })
                 }
                 
             }
@@ -177,7 +197,9 @@ class DragAndDrop extends React.Component{
 
                     const itemsTwo = this.state.doneArray
                     itemsTwo.splice(result.destination.index, 0, reorderedItem)
-                    this.setState({doneArray: [...itemsTwo]})
+                    this.setState({doneArray: [...itemsTwo]}, ()=> {
+                        this.saveTasksOnDB(this.state.todoArray, this.state.progressArray, this.state.doneArray)
+                    })
                 }
                 if (result.source.droppableId === "colunmTwo") {
                     const items = this.state.progressArray;
@@ -185,7 +207,9 @@ class DragAndDrop extends React.Component{
 
                     const itemsTwo = this.state.doneArray
                     itemsTwo.splice(result.destination.index, 0, reorderedItem)
-                    this.setState({doneArray: [...itemsTwo]})
+                    this.setState({doneArray: [...itemsTwo]}, ()=> {
+                        this.saveTasksOnDB(this.state.todoArray, this.state.progressArray, this.state.doneArray)
+                    })
                 }
                 if (result.source.droppableId === "trash") {
                     const items = this.state.trash;
@@ -193,7 +217,9 @@ class DragAndDrop extends React.Component{
 
                     const itemsTwo = this.state.doneArray
                     itemsTwo.splice(result.destination.index, 0, reorderedItem)
-                    this.setState({doneArray: [...itemsTwo]})
+                    this.setState({doneArray: [...itemsTwo]}, ()=> {
+                        this.saveTasksOnDB(this.state.todoArray, this.state.progressArray, this.state.doneArray)
+                    })
                 }
             }
 
@@ -204,7 +230,9 @@ class DragAndDrop extends React.Component{
 
                     const itemsTwo = this.state.trash
                     itemsTwo.splice(result.destination.index, 0, reorderedItem)
-                    this.setState({trash: [...itemsTwo]})
+                    this.setState({trash: [...itemsTwo]}, ()=> {
+                        this.saveTasksOnDB(this.state.todoArray, this.state.progressArray, this.state.doneArray)
+                    })
                 }
                 if (result.source.droppableId === "colunmTwo") {
                     const items = this.state.progressArray;
@@ -212,7 +240,9 @@ class DragAndDrop extends React.Component{
 
                     const itemsTwo = this.state.trash
                     itemsTwo.splice(result.destination.index, 0, reorderedItem)
-                    this.setState({trash: [...itemsTwo]})
+                    this.setState({trash: [...itemsTwo]}, ()=> {
+                        this.saveTasksOnDB(this.state.todoArray, this.state.progressArray, this.state.doneArray)
+                    })
                 }
                 if (result.source.droppableId === "colunmThree") {
                     const items = this.state.doneArray;
@@ -220,7 +250,9 @@ class DragAndDrop extends React.Component{
 
                     const itemsTwo = this.state.trash
                     itemsTwo.splice(result.destination.index, 0, reorderedItem)
-                    this.setState({trash: [...itemsTwo]})
+                    this.setState({trash: [...itemsTwo]}, ()=> {
+                        this.saveTasksOnDB(this.state.todoArray, this.state.progressArray, this.state.doneArray)
+                    })
                 }
             }
         }
@@ -249,8 +281,8 @@ class DragAndDrop extends React.Component{
         .catch(err => console.log(err))
         }
 
-    componentWillMount () {
-        console.log('mount');
+    componentDidMount () {
+        
         fetch('http://localhost:4000/getTable',{
             method: 'POST',
             mode: 'cors',
@@ -278,7 +310,7 @@ class DragAndDrop extends React.Component{
             <div>
                 <NavbarAuth/>
                 
-                {/* <h1 className='tableH1'>{this.state.urlParam.params.id}</h1> */}
+                <h1 className='tableH1'>{this.state.urlParam.params.id}</h1>
 
                 <div className='father'>
                     
@@ -328,7 +360,7 @@ class DragAndDrop extends React.Component{
                                         
                                     </ul>
                                     {provided.placeholder}
-                                    <input className='MyinputProg' name='taskProgress' onChange={this.savetask} value={this.state.taskProgress} placeholder='Add in progress tasks'/>
+                                    <input className='MyinputProg' name='taskProgress' onChange={this.savetask} value={this.state.taskProgress} placeholder='Add tasks in progress'/>
                                     <button className='MybtnProg' onClick={this.sendReduxTwo}>Create task</button>
                                 </div>
                             )}
@@ -361,7 +393,7 @@ class DragAndDrop extends React.Component{
                         <Droppable droppableId='trash'>
                             {(provided)=> (
                                 <div className='trash'>
-                                    <h3>Trash</h3>
+                                    <h1>Trash</h1>
                                     <ul  {...provided.droppableProps} ref={provided.innerRef}>
                                         {this.state.trash.map((item,index)=>{
                                             return <Draggable key={item} draggableId={item} index={index}>

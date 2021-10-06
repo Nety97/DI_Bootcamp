@@ -16,7 +16,7 @@ app.use(bp.urlencoded({ extended: false }))
 app.use(bp.json());
 
 app.post('/register', (req,res)=>{
-  // console.log(req.body);
+  
   const {name, email, password} = req.body
   const salt = bcrypt.genSaltSync(saltRounds);
   const hash = bcrypt.hashSync(password, salt);
@@ -25,7 +25,6 @@ app.post('/register', (req,res)=>{
   }
   DB.createUser(name, email, hash)
   .then(data =>{
-    // console.log(data);
     res.send({message: 'ok', data})
   })
   .catch(err => {
@@ -63,17 +62,21 @@ app.post('/signin', (req,res)=>{
 app.post('/checkToken', withAuth.withAuth, (req,res)=> {res.sendStatus(200)})
 
 app.post('/createTable', (req, res) => {
-  // console.log(req.body);
   const {userId, tableName} = req.body
   DB.checkTable(userId,tableName)
   .then(data => {
     if (data.length > 0) {
-      console.log(data);
       res.send({message: 'Table name alredy exists'})
     } else {
       DB.createtable(userId, tableName)
       .then(data => {
-        res.send(data)
+          DB.getUsertable(userId)
+          .then(data => {
+            res.send(data)
+          })
+          .catch(err => {
+            res.send({message: err})
+          })
       })
       .catch(err => {
         res.send({message: err})
@@ -110,10 +113,8 @@ app.post('/getTable', (req,res) => {
 
 app.post('/addTask', (req, res) => {
   const {userId, table, todoArr, progressArr, doneArr} = req.body
-  // console.log(req.body);
   DB.addTo(userId, table, todoArr, progressArr, doneArr, res) 
   .then(data => {
-    // console.log(data);
     res.send(data)
   })
   .catch(err => {

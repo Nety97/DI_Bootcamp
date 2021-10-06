@@ -63,13 +63,14 @@ footer{
   border-radius: 8px;
 }
 .trashli{
-  background-color: rgb(255, 0, 0);
+  background-color: black;
   color: white;
   list-style: none;
   border-radius: 8px;
 }
 ul{
   padding: 0 20px;
+  padding-left: 20px!important;
 }
 li{
   padding: 8px;
@@ -100,10 +101,10 @@ li{
 }
 .trash{
   width: 30vw;
-  border: 2px solid rgb(14, 207, 79);
+  border: 2px solid black;
   border-radius: 8px;
   margin: 10px;
-  box-shadow: 3px 3px rgb(14, 207, 79);
+  box-shadow: 3px 3px black;
 }
 .linkHome{
   text-decoration: none;

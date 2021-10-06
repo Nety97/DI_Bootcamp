@@ -32,7 +32,7 @@ const createtable = (userId, tableName) => {
 }
 
 const getUsertable = (userId) => {
-    return db('tables').select('table_id', 'table_name', 'data_table').where({user_id: userId})
+    return db('tables').select('table_id', 'table_name', 'data_table').where({user_id: userId}).orderBy('data_register')
 }
 
 const getTableByUser = (userId, table) => {
@@ -40,7 +40,6 @@ const getTableByUser = (userId, table) => {
 }
 
 const addTo = (userId, tableN, todoArr, progressArr, doneArr, res) => {
-    // console.log(todoArr);
     return db.transaction(trx => {
         trx('tables')
         .select('data_table')
@@ -48,23 +47,12 @@ const addTo = (userId, tableN, todoArr, progressArr, doneArr, res) => {
         .andWhere({table_name: tableN})
         .returning('data_table')
         .then(data_tableF => {
-            let userTable = data_tableF[0]
-            let currentTable = userTable.data_table?.data_table || userTable.data_table
-            // let {table:currentTable} = userTable.data_table
-            // console.log(data_tableF);
-            // console.log(data_table);
-            // console.log(currentTable);
-            // console.log(todoArr, progressArr, doneArr);
-            let {toDo, inProgress, done} = currentTable.table
-            // console.log(progressArr);
-            toDo = [...todoArr]
-            inProgress = [...progressArr]
-            done = [...doneArr]
-            console.log("hh",toDo);
+            // let userTable = data_tableF[0]
+
             const jsonTwo = {tableName: tableN, table: {
-                toDo: [...toDo],
-                inProgress: [...inProgress],
-                done: [...done]
+                toDo: [...todoArr],
+                inProgress: [...progressArr],
+                done: [...doneArr]
             }}
             JSON.stringify(jsonTwo)
             return trx('tables')

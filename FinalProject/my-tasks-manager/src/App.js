@@ -14,7 +14,7 @@ import React from 'react';
 import Navbarhome from './components/Navbarhome';
 import Home from './components/Home';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import ToDoList from './components/ToDoList';
+
 import DragAndDrop from './components/DragAndDrop';
 
 class App extends React.Component {
@@ -42,9 +42,6 @@ class App extends React.Component {
             <Route exact path='/'>
               <Navbarhome/>
               <Home/>
-            </Route>
-            <Route path='/x'>
-              <DragAndDrop/>
             </Route>
           </Switch>
         </Router>
